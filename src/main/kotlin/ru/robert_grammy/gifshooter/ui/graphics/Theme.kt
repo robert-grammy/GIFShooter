@@ -1,10 +1,12 @@
-package ru.robert_grammy.gifshooter.ui.model
+package ru.robert_grammy.gifshooter.ui.graphics
 
 import ru.robert_grammy.gifshooter.config.Config
+import ru.robert_grammy.gifshooter.config.UIProperties
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Color
 import java.util.Locale
 import java.util.ResourceBundle
+import javax.swing.plaf.ColorUIResource
 
 enum class Theme {
 
@@ -13,30 +15,38 @@ enum class Theme {
     HOVER_COLOR,
     ACTIVE_COLOR,
     TEXT_COLOR,
-    BORDER_COLOR;
+    BORDER_COLOR,
+    HOVER_CLOSE_BUTTON,
+    ACTIVE_CLOSE_BUTTON;
 
     companion object {
-        private val TRANSPARENT = Color(0xFF.rotateLeft(24), true)
         private const val BUNDLE_NAME = "${ResourceLoader.THEMES_DIR}theme"
         private lateinit var CONFIG: ResourceBundle
 
-        fun setSettings(themeName: String) {
+        private fun setSettings(themeName: String) {
             CONFIG = ResourceBundle.getBundle(BUNDLE_NAME, Locale.of(themeName))
         }
 
-        fun load() {
+        private fun load() {
             entries.forEach {
                 it.value = Color(Integer.decode(CONFIG.getString(it.name.lowercase())))
             }
         }
 
-        init {
-            setSettings(Config.THEME.value)
+        fun reload(themeName: String) {
+            setSettings(themeName)
             load()
+            UIProperties.loadProperties()
+        }
+
+        init {
+            reload(Config.THEME.get())
         }
     }
 
-    lateinit var value: Color
-        private set
+    private var value: Color = Color(0xFF.rotateLeft(24), true)
+
+    fun get() = value
+    fun resource() = ColorUIResource(value)
 
 }

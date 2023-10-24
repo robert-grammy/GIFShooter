@@ -1,6 +1,7 @@
 package ru.robert_grammy.gifshooter.ui.component
 
-import ru.robert_grammy.gifshooter.ui.model.Theme
+import ru.robert_grammy.gifshooter.control.ThemeComponent
+import ru.robert_grammy.gifshooter.ui.graphics.Theme
 import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Graphics
@@ -8,13 +9,13 @@ import java.awt.Graphics2D
 import javax.swing.ImageIcon
 import javax.swing.JButton
 
-class ColoredButton : JButton {
+class ColoredButton : JButton, ThemeComponent {
 
-    private var backgroundColor: Color = Theme.PRIMARY_COLOR.value
-    private var hoverColor: Color = Theme.HOVER_COLOR.value
-    private var activeColor: Color = Theme.ACTIVE_COLOR.value
-    private var textColor: Color = Theme.TEXT_COLOR.value
-    private var borderColor: Color = Theme.BORDER_COLOR.value
+    lateinit var backgroundColor: Color
+    lateinit var hoverColor: Color
+    lateinit var activeColor: Color
+    lateinit var textColor: Color
+    lateinit var borderColor: Color
 
     private var isBordered = false
     private var borderStroke = BasicStroke(0F, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND)
@@ -22,13 +23,15 @@ class ColoredButton : JButton {
         set(value) {
             field = value.coerceAtLeast(0F)
             isBordered = field.toInt() > 0
-            borderStroke = BasicStroke(field, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND)
+            borderStroke = BasicStroke(field, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER)
         }
 
     init {
         isContentAreaFilled = false
         isBorderPainted = false
         isFocusable = false
+
+        updateTheme()
 
         background = backgroundColor
         foreground = textColor
@@ -53,6 +56,14 @@ class ColoredButton : JButton {
             g.drawRect((borderWeight).toInt(), (borderWeight).toInt(), (width - 2*borderWeight).toInt(), (height - 2*borderWeight).toInt())
         }
         super.paintComponent(g)
+    }
+
+    override fun updateTheme() {
+        backgroundColor = Theme.PRIMARY_COLOR.get()
+        hoverColor = Theme.HOVER_COLOR.get()
+        activeColor = Theme.ACTIVE_COLOR.get()
+        textColor = Theme.TEXT_COLOR.get()
+        borderColor = Theme.BORDER_COLOR.get()
     }
 
 }

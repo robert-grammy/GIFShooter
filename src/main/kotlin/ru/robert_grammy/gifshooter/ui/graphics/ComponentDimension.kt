@@ -1,11 +1,11 @@
-package ru.robert_grammy.gifshooter.ui.model
+package ru.robert_grammy.gifshooter.ui.graphics
 
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Dimension
 
 enum class ComponentDimension {
 
-    TITLE_BAR;
+    SQUARE_BUTTON;
 
     companion object {
         private const val WIDTH_AND_HEIGHT_SEPARATOR = "x"
@@ -19,8 +19,8 @@ enum class ComponentDimension {
         }
     }
 
-    lateinit var value: Dimension
-        private set
+    private lateinit var value: Dimension
 
+    fun get() = value
 
 }

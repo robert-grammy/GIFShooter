@@ -17,7 +17,8 @@ enum class Config {
         }
     }
 
-    lateinit var value: String
-        private set
+    private lateinit var value: String
+
+    fun get() = value
 
 }

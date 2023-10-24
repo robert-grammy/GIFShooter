@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/main/resources/configs/locales/strings_en_US.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/configs/locales/strings_ru_RU.properties" />
     <file url="file://$PROJECT_DIR$/src/main/resources/configs/themes/theme_blue.properties" />
     <file url="file://$PROJECT_DIR$/src/main/resources/configs/themes/theme_green.properties" />
     <file url="file://$PROJECT_DIR$/src/main/resources/configs/themes/theme_red.properties" />
@@ -9,6 +11,11 @@
       <file value="file://$PROJECT_DIR$/src/main/resources/configs/themes/theme_green.properties" />
       <file value="file://$PROJECT_DIR$/src/main/resources/configs/themes/theme_red.properties" />
       <base-name>theme</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/configs/locales/strings_en_US.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/configs/locales/strings_ru_RU.properties" />
+      <base-name>strings</base-name>
     </custom-resource-bundle>
   </component>
 </project>

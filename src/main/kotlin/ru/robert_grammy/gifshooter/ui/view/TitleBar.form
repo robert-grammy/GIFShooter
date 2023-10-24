@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.robert_grammy.gifshooter.ui.view.TitleBar">
+  <grid id="27dc6" binding="rootPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="325" height="30"/>
+    </constraints>
+    <properties>
+      <minimumSize width="200" height="30"/>
+      <preferredSize width="200" height="30"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="fa2f9" binding="titlePane" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="West"/>
+        <properties/>
+        <border type="empty">
+          <size top="0" left="10" bottom="0" right="10"/>
+        </border>
+        <children>
+          <component id="e1f2" class="javax.swing.JLabel" binding="title">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <font/>
+              <icon value="assets/images/icons/program_icon.png"/>
+              <text resource-bundle="configs/locales/strings" key="gui_shooter.program.name"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="a824b" binding="buttonsPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="East"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="7f4e" class="javax.swing.JButton" binding="minimizeButton" custom-create="true">
+            <constraints border-constraint="West"/>
+            <properties>
+              <icon value="assets/images/icons/minimize_program_button_icon.png"/>
+              <maximumSize width="30" height="30"/>
+              <minimumSize width="30" height="30"/>
+              <preferredSize width="30" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="7e138" class="javax.swing.JButton" binding="closeButton" custom-create="true">
+            <constraints border-constraint="East"/>
+            <properties>
+              <icon value="assets/images/icons/close_program_button_icon.png"/>
+              <maximumSize width="30" height="30"/>
+              <minimumSize width="30" height="30"/>
+              <preferredSize width="30" height="30"/>
+              <selected value="false"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
