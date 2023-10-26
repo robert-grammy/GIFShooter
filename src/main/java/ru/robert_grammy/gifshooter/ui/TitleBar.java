@@ -1,11 +1,11 @@
-package ru.robert_grammy.gifshooter.ui.view;
+package ru.robert_grammy.gifshooter.ui;
 
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
 import ru.robert_grammy.gifshooter.control.listener.FrameMouseDragListener;
 import ru.robert_grammy.gifshooter.ui.component.ColoredButton;
-import ru.robert_grammy.gifshooter.ui.graphics.Theme;
+import ru.robert_grammy.gifshooter.ui.config.Theme;
 
 import javax.swing.*;
 import java.util.Arrays;

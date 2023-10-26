@@ -1,11 +1,13 @@
-package ru.robert_grammy.gifshooter.ui.graphics
+package ru.robert_grammy.gifshooter.ui.config
 
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
+import java.awt.Component
 import java.awt.Dimension
 
 enum class ComponentDimension {
 
-    SQUARE_BUTTON;
+    SQUARE_BUTTON,
+    LINE_HEIGHT_30;
 
     companion object {
         private const val WIDTH_AND_HEIGHT_SEPARATOR = "x"
@@ -22,5 +24,11 @@ enum class ComponentDimension {
     private lateinit var value: Dimension
 
     fun get() = value
+
+    fun setExactly(component: Component) {
+        component.preferredSize = value
+        component.minimumSize = value
+        component.maximumSize = value
+    }
 
 }

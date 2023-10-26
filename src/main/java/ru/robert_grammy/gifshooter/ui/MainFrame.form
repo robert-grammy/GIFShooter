@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.robert_grammy.gifshooter.ui.MainFrame">
+  <grid id="27dc6" binding="rootPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="410" height="282"/>
+    </constraints>
+    <properties>
+      <minimumSize width="200" height="30"/>
+      <opaque value="true"/>
+    </properties>
+    <border type="none">
+      <size top="0" left="0" bottom="0" right="0"/>
+    </border>
+    <children>
+      <grid id="eb5d1" binding="contentPane" layout-manager="GridLayoutManager" row-count="4" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="5" vgap="5">
+        <margin top="5" left="5" bottom="5" right="5"/>
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none">
+          <size top="0" left="5" bottom="5" right="5"/>
+          <color color="-2104859"/>
+        </border>
+        <children>
+          <component id="c803b" class="javax.swing.JLabel" binding="areaLineLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="configs/locales/strings" key="gui_shooter.content_pane.area_selector_pane.label"/>
+            </properties>
+          </component>
+          <component id="32df2" class="javax.swing.JComboBox" binding="areaTypeSelector" custom-create="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <preferred-size width="-1" height="30"/>
+                <maximum-size width="-1" height="30"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <grid id="4e13e" binding="areaOptionPane" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="12d4f" class="javax.swing.JComboBox" binding="screenSelector" custom-create="true">
+                <constraints>
+                  <card name="SCREEN"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="c7cc4" class="javax.swing.JButton" binding="areaAllocateButton" custom-create="true">
+                <constraints>
+                  <card name="AREA"/>
+                </constraints>
+                <properties>
+                  <text value="Button"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="413ca" class="javax.swing.JLabel" binding="outputLineLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="configs/locales/strings" key="gui_shooter.content_pane.output_pane.label"/>
+            </properties>
+          </component>
+          <component id="c11a5" class="javax.swing.JTextField" binding="outputTextField" custom-create="true">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <preferred-size width="150" height="30"/>
+                <maximum-size width="-1" height="30"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="149ee" class="javax.swing.JButton" binding="chooseFolderButton" custom-create="true">
+            <constraints>
+              <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="30" height="30"/>
+                <preferred-size width="30" height="30"/>
+                <maximum-size width="30" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <icon value="assets/images/icons/select_folder_button_icon.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="6b047" class="javax.swing.JLabel" binding="fpsLineLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="configs/locales/strings" key="gui_shooter.content_pane.fps_select_pane.label"/>
+            </properties>
+          </component>
+          <component id="5b7fb" class="javax.swing.JButton" binding="resetFpsButton" custom-create="true">
+            <constraints>
+              <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="30" height="30"/>
+                <preferred-size width="30" height="30"/>
+                <maximum-size width="30" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <icon value="assets/images/icons/reset_button_icon.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="5bb58" class="javax.swing.JComboBox" binding="fpsSelector" custom-create="true">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <preferred-size width="-1" height="30"/>
+                <maximum-size width="-1" height="30"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="90877" class="javax.swing.JLabel" binding="delayLineLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="configs/locales/strings" key="gui_shooter.content_pane.delay_select_pane.label"/>
+            </properties>
+          </component>
+          <component id="aa77d" class="javax.swing.JComboBox" binding="delaySelector" custom-create="true">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="b9566" class="javax.swing.JButton" binding="resetDelayButton" custom-create="true">
+            <constraints>
+              <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="30" height="30"/>
+                <preferred-size width="30" height="30"/>
+                <maximum-size width="30" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <icon value="assets/images/icons/reset_button_icon.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <nested-form id="f75c6" form-file="ru/robert_grammy/gifshooter/ui/TitleBar.form" binding="titleBar">
+        <constraints border-constraint="North"/>
+      </nested-form>
+    </children>
+  </grid>
+</form>

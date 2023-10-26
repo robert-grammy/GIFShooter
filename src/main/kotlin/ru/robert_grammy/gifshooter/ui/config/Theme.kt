@@ -1,4 +1,4 @@
-package ru.robert_grammy.gifshooter.ui.graphics
+package ru.robert_grammy.gifshooter.ui.config
 
 import ru.robert_grammy.gifshooter.config.Config
 import ru.robert_grammy.gifshooter.config.UIProperties

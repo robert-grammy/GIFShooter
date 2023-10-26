@@ -1,10 +1,8 @@
 package ru.robert_grammy.gifshooter.config
 
-import ru.robert_grammy.gifshooter.ui.graphics.Theme
-import ru.robert_grammy.gifshooter.ui.graphics.UnispaceFont
-import java.awt.Color
+import ru.robert_grammy.gifshooter.ui.config.Theme
+import ru.robert_grammy.gifshooter.ui.config.UnispaceFont
 import javax.swing.UIManager
-import javax.swing.plaf.ColorUIResource
 import javax.swing.plaf.UIResource
 
 object UIProperties {
@@ -28,7 +26,7 @@ object UIProperties {
         set(ComponentKey.SPINNER, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
         set(ComponentKey.TEXT_FIELD, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
 
-        set(ComponentKey.COMBO_BOX, PropertyKey.SELECTION_BACKGROUND, Theme.HOVER_COLOR.resource())
+        set(ComponentKey.COMBO_BOX, PropertyKey.SELECTION_BACKGROUND, Theme.PRIMARY_COLOR.resource())
         set(ComponentKey.COMBO_BOX, PropertyKey.SELECTION_FOREGROUND, Theme.TEXT_COLOR.resource())
     }
 

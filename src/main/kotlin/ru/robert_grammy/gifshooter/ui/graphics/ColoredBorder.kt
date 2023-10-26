@@ -1,4 +1,4 @@
-package ru.robert_grammy.gifshooter.ui.component
+package ru.robert_grammy.gifshooter.ui.graphics
 
 import java.awt.*
 import java.awt.geom.Path2D

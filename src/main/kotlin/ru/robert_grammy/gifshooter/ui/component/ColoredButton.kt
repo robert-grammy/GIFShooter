@@ -1,7 +1,8 @@
 package ru.robert_grammy.gifshooter.ui.component
 
 import ru.robert_grammy.gifshooter.control.ThemeComponent
-import ru.robert_grammy.gifshooter.ui.graphics.Theme
+import ru.robert_grammy.gifshooter.ui.config.ComponentDimension
+import ru.robert_grammy.gifshooter.ui.config.Theme
 import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Graphics
@@ -10,6 +11,18 @@ import javax.swing.ImageIcon
 import javax.swing.JButton
 
 class ColoredButton : JButton, ThemeComponent {
+
+    companion object {
+        fun setDefaultStyle(button: JButton) {
+            if (button !is ColoredButton) return
+            button.borderWeight = 2F
+        }
+
+        fun setSquareStyle(button: JButton) {
+            setDefaultStyle(button)
+            ComponentDimension.SQUARE_BUTTON.setExactly(button)
+        }
+    }
 
     lateinit var backgroundColor: Color
     lateinit var hoverColor: Color
@@ -44,16 +57,20 @@ class ColoredButton : JButton, ThemeComponent {
     override fun paintComponent(g: Graphics?) {
         if (g == null) return
         val model = getModel()
+        if (isBordered) {
+            g.color = borderColor
+            (g as Graphics2D).stroke = borderStroke
+            g.fillRect(0, 0, width, height)
+        }
         g.color = backgroundColor
         when {
             model.isPressed -> g.color = activeColor
             model.isRollover -> g.color = hoverColor
         }
-        g.fillRect(0,0, width, height)
-        if (isBordered) {
-            g.color = borderColor
-            (g as Graphics2D).stroke = borderStroke
-            g.drawRect((borderWeight).toInt(), (borderWeight).toInt(), (width - 2*borderWeight).toInt(), (height - 2*borderWeight).toInt())
+        if (!isBordered) {
+            g.fillRect(0, 0, width, height)
+        } else {
+            g.fillRect(borderWeight.toInt(), borderWeight.toInt(), (width-2*borderWeight).toInt(), (height-2*borderWeight).toInt())
         }
         super.paintComponent(g)
     }

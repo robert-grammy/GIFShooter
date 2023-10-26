@@ -1,18 +1,20 @@
-package ru.robert_grammy.gifshooter.ui.view;
+package ru.robert_grammy.gifshooter.ui;
 
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
-import ru.robert_grammy.gifshooter.ui.component.ColoredBorder;
-import ru.robert_grammy.gifshooter.ui.component.ColoredButton;
-import ru.robert_grammy.gifshooter.ui.component.AreaTypeSelector;
-import ru.robert_grammy.gifshooter.ui.component.ScreenSelector;
-import ru.robert_grammy.gifshooter.ui.graphics.ComponentDimension;
-import ru.robert_grammy.gifshooter.ui.graphics.Theme;
-import ru.robert_grammy.gifshooter.utils.ResourceLoader;
+import ru.robert_grammy.gifshooter.control.listener.SelectorCardChangeListener;
+import ru.robert_grammy.gifshooter.ui.component.*;
+import ru.robert_grammy.gifshooter.ui.component.selector.AreaTypeSelector;
+import ru.robert_grammy.gifshooter.ui.component.selector.DelaySelector;
+import ru.robert_grammy.gifshooter.ui.component.selector.FPSSelector;
+import ru.robert_grammy.gifshooter.ui.component.selector.ScreenSelector;
+import ru.robert_grammy.gifshooter.ui.config.Theme;
+import ru.robert_grammy.gifshooter.ui.graphics.ColoredBorder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.Arrays;
 
 public class MainFrame extends JFrame implements ThemeComponent, LocaleComponent {
@@ -27,6 +29,12 @@ public class MainFrame extends JFrame implements ThemeComponent, LocaleComponent
     private JLabel outputLineLabel;
     private JTextField outputTextField;
     private JButton chooseFolderButton;
+    private JButton resetFpsButton;
+    private JComboBox<String> fpsSelector;
+    private JLabel fpsLineLabel;
+    private JComboBox<String> delaySelector;
+    private JLabel delayLineLabel;
+    private JButton resetDelayButton;
 
     public MainFrame() {
         initializeRootPane();
@@ -42,14 +50,10 @@ public class MainFrame extends JFrame implements ThemeComponent, LocaleComponent
     }
 
     private void setupComponents() {
-        ((ColoredButton) areaAllocateButton).setBorderWeight(2F);
-
-        chooseFolderButton.setIcon(ResourceLoader.INSTANCE.getIcon("select_folder_button_icon.png", ResourceLoader.ICONS_DIR));
-        ((ColoredButton) chooseFolderButton).setBorderWeight(2F);
-        chooseFolderButton.setPreferredSize(ComponentDimension.SQUARE_BUTTON.get());
-        chooseFolderButton.setMinimumSize(ComponentDimension.SQUARE_BUTTON.get());
-
-        //-----
+        ColoredButton.Companion.setDefaultStyle(areaAllocateButton);
+        ColoredButton.Companion.setSquareStyle(chooseFolderButton);
+        ColoredButton.Companion.setSquareStyle(resetFpsButton);
+        ColoredButton.Companion.setSquareStyle(resetDelayButton);
     }
 
     private void setupFrame() {
@@ -60,13 +64,7 @@ public class MainFrame extends JFrame implements ThemeComponent, LocaleComponent
     }
 
     private void setupListeners() {
-        areaTypeSelector.addActionListener(event -> {
-            if (areaTypeSelector.getSelectedIndex() == -1) return;
-            String card = ((AreaTypeSelector) areaTypeSelector).getSelected();
-            CardLayout layout = (CardLayout) areaOptionPane.getLayout();
-            layout.show(areaOptionPane, card);
-        });
-
+        areaTypeSelector.addActionListener(new SelectorCardChangeListener((AreaTypeSelector) areaTypeSelector, areaOptionPane));
         titleBar.setupListeners();
     }
 
@@ -74,10 +72,15 @@ public class MainFrame extends JFrame implements ThemeComponent, LocaleComponent
     public void updateTexts() {
         areaLineLabel.setText(Strings.AREA_LINE_LABEL.get());
         outputLineLabel.setText(Strings.OUTPUT_LINE_LABEL.get());
+        fpsLineLabel.setText(Strings.FPS_LINE_LABEL.get());
+        delayLineLabel.setText(Strings.DELAY_LINE_LABEL.get());
+
+        areaAllocateButton.setText(Strings.ALLOCATION_BUTTON.get());
 
         LocaleComponent.Companion.update(areaTypeSelector);
         LocaleComponent.Companion.update(screenSelector);
-        areaAllocateButton.setText(Strings.ALLOCATION_BUTTON.get());
+        LocaleComponent.Companion.update(fpsSelector);
+        LocaleComponent.Companion.update(delaySelector);
 
         titleBar.updateTexts();
     }
@@ -87,19 +90,32 @@ public class MainFrame extends JFrame implements ThemeComponent, LocaleComponent
         SwingUtilities.updateComponentTreeUI(rootPane);
         Arrays.stream(rootPane.getComponents()).forEach(SwingUtilities::updateComponentTreeUI);
 
-        titleBar.updateTheme();
+        ThemeComponent.Companion.update(areaTypeSelector);
+        ThemeComponent.Companion.update(screenSelector);
+        ThemeComponent.Companion.update(fpsSelector);
+        ThemeComponent.Companion.update(delaySelector);
+
         ThemeComponent.Companion.update(areaAllocateButton);
         ThemeComponent.Companion.update(chooseFolderButton);
+        ThemeComponent.Companion.update(resetFpsButton);
+        ThemeComponent.Companion.update(resetDelayButton);
 
         contentPane.setBorder(new ColoredBorder(Theme.PRIMARY_COLOR.get(), new Insets(0, 5, 5, 5)));
         rootPane.setBorder(BorderFactory.createLineBorder(Theme.BORDER_COLOR.get(), 1));
+
+        titleBar.updateTheme();
     }
 
     private void createUIComponents() {
         areaTypeSelector = new AreaTypeSelector();
         screenSelector = new ScreenSelector();
         areaAllocateButton = new ColoredButton();
+        outputTextField = new OutputPathField();
         chooseFolderButton = new ColoredButton();
+        fpsSelector = new FPSSelector();
+        resetFpsButton = new ColoredButton();
+        delaySelector = new DelaySelector();
+        resetDelayButton = new ColoredButton();
     }
 
     public void setColorTheme(String themeName) {
@@ -111,6 +127,19 @@ public class MainFrame extends JFrame implements ThemeComponent, LocaleComponent
         Strings.Companion.reload(locale);
         updateTexts();
         pack();
+        rootPane.requestFocus();
+    }
+
+    public File getOutputFolder() {
+        return ((OutputPathField) outputTextField).getFolder();
+    }
+
+    public int getFPS() {
+        return FPSSelector.Companion.getFRAME_LIST().get(fpsSelector.getSelectedIndex());
+    }
+
+    public int getDelay() {
+        return DelaySelector.Companion.getDELAY_LIST().get(delaySelector.getSelectedIndex());
     }
 
 }

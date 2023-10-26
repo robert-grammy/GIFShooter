@@ -13,7 +13,11 @@ enum class Strings(private val key: String) {
     ALLOCATION_BUTTON("gui_shooter.content_pane.area_selector_pane.allocation_button.text"),
     SCREEN_SELECTOR_ALL("gui_shooter.content_pane.area_selector_pane.screen_selector.all"),
     SCREEN_SELECTOR_SCREEN_FORMAT("gui_shooter.content_pane.area_selector_pane.screen_selector.screen_nth"),
-    OUTPUT_LINE_LABEL("gui_shooter.content_pane.output_pane.label");
+    OUTPUT_LINE_LABEL("gui_shooter.content_pane.output_pane.label"),
+    FPS_LINE_LABEL("gui_shooter.content_pane.fps_select_pane.label"),
+    FPS_SELECTOR_FORMAT("gui_shooter.content_pane.fps_select_pane.fps_format"),
+    DELAY_LINE_LABEL("gui_shooter.content_pane.delay_select_pane.label"),
+    DELAY_SELECTOR_FORMAT("gui_shooter.content_pane.delay_select_pane.delay_format");
 
     companion object {
         private const val BUNDLE_NAME = "configs.locales.strings"
