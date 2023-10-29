@@ -1,8 +1,10 @@
 package ru.robert_grammy.gifshooter.ui.component
 
 import ru.robert_grammy.gifshooter.control.ThemeComponent
-import ru.robert_grammy.gifshooter.ui.config.ComponentDimension
-import ru.robert_grammy.gifshooter.ui.config.Theme
+import ru.robert_grammy.gifshooter.config.ComponentDimension
+import ru.robert_grammy.gifshooter.config.Strings
+import ru.robert_grammy.gifshooter.config.Theme
+import ru.robert_grammy.gifshooter.control.LocaleComponent
 import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Graphics
@@ -10,7 +12,7 @@ import java.awt.Graphics2D
 import javax.swing.ImageIcon
 import javax.swing.JButton
 
-class ColoredButton : JButton, ThemeComponent {
+class ColoredButton : JButton, ThemeComponent, LocaleComponent {
 
     companion object {
         fun setDefaultStyle(button: JButton) {
@@ -39,6 +41,8 @@ class ColoredButton : JButton, ThemeComponent {
             borderStroke = BasicStroke(field, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER)
         }
 
+    private var localeText: Strings? = null
+
     init {
         isContentAreaFilled = false
         isBorderPainted = false
@@ -53,6 +57,13 @@ class ColoredButton : JButton, ThemeComponent {
     constructor() : super()
     constructor(text: String) : super(text)
     constructor(text: String, icon: ImageIcon) : super(text, icon)
+    constructor(icon: ImageIcon) : super(icon)
+    constructor(localeText: Strings) : super() {
+        this.localeText = localeText
+    }
+    constructor(localeText: Strings, icon: ImageIcon) : super(icon) {
+        this.localeText = localeText
+    }
 
     override fun paintComponent(g: Graphics?) {
         if (g == null) return
@@ -81,6 +92,11 @@ class ColoredButton : JButton, ThemeComponent {
         activeColor = Theme.ACTIVE_COLOR.get()
         textColor = Theme.TEXT_COLOR.get()
         borderColor = Theme.BORDER_COLOR.get()
+    }
+
+    override fun updateTexts() {
+        if (localeText == null) return
+        text = localeText!!.get()
     }
 
 }

@@ -1,16 +1,18 @@
-package ru.robert_grammy.gifshooter.ui;
+package ru.robert_grammy.gifshooter.ui.main_window;
 
+import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
 import ru.robert_grammy.gifshooter.control.listener.FrameMouseDragListener;
 import ru.robert_grammy.gifshooter.ui.component.ColoredButton;
-import ru.robert_grammy.gifshooter.ui.config.Theme;
+import ru.robert_grammy.gifshooter.config.Theme;
+import ru.robert_grammy.gifshooter.ui.component.LineLabel;
 
 import javax.swing.*;
 import java.util.Arrays;
 
-public class TitleBar implements ThemeComponent, LocaleComponent {
+public class ProgramTitleBar implements ThemeComponent, LocaleComponent {
     private JPanel rootPane;
     private JButton closeButton;
     private JButton minimizeButton;
@@ -21,9 +23,10 @@ public class TitleBar implements ThemeComponent, LocaleComponent {
     private void createUIComponents() {
         initializeMinimizeButton();
         initializeCloseButton();
+        initializeTitle();
     }
 
-    public void setupListeners() {
+    public void loadListeners() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(rootPane);
         FrameMouseDragListener listener = new FrameMouseDragListener(frame);
         rootPane.addMouseMotionListener(listener);
@@ -44,9 +47,14 @@ public class TitleBar implements ThemeComponent, LocaleComponent {
         });
     }
 
+    private void initializeTitle() {
+        title = new LineLabel(Strings.PROGRAM_NAME);
+        title.setIcon(ProgramIcon.PROGRAM.get());
+    }
+
     @Override
     public void updateTexts() {
-        title.setText(Strings.PROGRAM_NAME.get());
+        LocaleComponent.Companion.update(title);
     }
 
     @Override

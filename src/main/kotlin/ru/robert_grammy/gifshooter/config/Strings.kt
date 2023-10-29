@@ -6,18 +6,24 @@ import java.util.ResourceBundle
 
 enum class Strings(private val key: String) {
 
-    PROGRAM_NAME("gui_shooter.program.name"),
-    AREA_LINE_LABEL("gui_shooter.content_pane.area_selector_pane.label"),
-    AREA_SELECTOR_SCREEN_TYPE("gui_shooter.content_pane.area_selector_pane.type_selector.screen"),
-    AREA_SELECTOR_AREA_TYPE("gui_shooter.content_pane.area_selector_pane.type_selector.area"),
-    ALLOCATION_BUTTON("gui_shooter.content_pane.area_selector_pane.allocation_button.text"),
-    SCREEN_SELECTOR_ALL("gui_shooter.content_pane.area_selector_pane.screen_selector.all"),
-    SCREEN_SELECTOR_SCREEN_FORMAT("gui_shooter.content_pane.area_selector_pane.screen_selector.screen_nth"),
-    OUTPUT_LINE_LABEL("gui_shooter.content_pane.output_pane.label"),
-    FPS_LINE_LABEL("gui_shooter.content_pane.fps_select_pane.label"),
-    FPS_SELECTOR_FORMAT("gui_shooter.content_pane.fps_select_pane.fps_format"),
-    DELAY_LINE_LABEL("gui_shooter.content_pane.delay_select_pane.label"),
-    DELAY_SELECTOR_FORMAT("gui_shooter.content_pane.delay_select_pane.delay_format");
+    PROGRAM_NAME("gui_shooter.name"),
+    AREA_LINE_LABEL("gui_shooter.main_frame.area_selector_pane.label"),
+    AREA_SELECTOR_SCREEN_TYPE("gui_shooter.main_frame.area_selector_pane.type_selector.screen"),
+    AREA_SELECTOR_AREA_TYPE("gui_shooter.main_frame.area_selector_pane.type_selector.area"),
+    ALLOCATION_BUTTON("gui_shooter.main_frame.area_selector_pane.allocation_button.text"),
+    SCREEN_SELECTOR_ALL("gui_shooter.main_frame.area_selector_pane.screen_selector.all"),
+    SCREEN_SELECTOR_SCREEN_FORMAT("gui_shooter.main_frame.area_selector_pane.screen_selector.screen_nth"),
+    OUTPUT_LINE_LABEL("gui_shooter.main_frame.output_pane.label"),
+    FPS_LINE_LABEL("gui_shooter.main_frame.fps_selector_pane.label"),
+    FPS_SELECTOR_FORMAT("gui_shooter.main_frame.fps_selector_pane.fps_format"),
+    DELAY_LINE_LABEL("gui_shooter.main_frame.delay_selector_pane.label"),
+    DELAY_SELECTOR_FORMAT("gui_shooter.main_frame.delay_selector_pane.delay_format"),
+
+    START_CAPTURE_BUTTON("gui_shooter.main_frame.capture_and_settings_pane.capture_button.start"),
+    STOP_CAPTURE_BUTTON("gui_shooter.main_frame.capture_and_settings_pane.capture_button.stop"),
+
+    FREE_AREA_TITLE("gui_shooter.free_area.title_bar.title"),
+    FREE_AREA_SIZE_INFO_FORMAT("gui_shooter.free_area.bottom_bar.label");
 
     companion object {
         private const val BUNDLE_NAME = "configs.locales.strings"

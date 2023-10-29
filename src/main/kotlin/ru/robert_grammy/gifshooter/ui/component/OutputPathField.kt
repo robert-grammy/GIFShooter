@@ -1,7 +1,7 @@
 package ru.robert_grammy.gifshooter.ui.component
 
 import ru.robert_grammy.gifshooter.config.Strings
-import ru.robert_grammy.gifshooter.ui.config.Theme
+import ru.robert_grammy.gifshooter.config.Theme
 import java.awt.Insets
 import java.io.File
 import javax.swing.JTextField

@@ -1,7 +1,5 @@
 package ru.robert_grammy.gifshooter.config
 
-import ru.robert_grammy.gifshooter.ui.config.Theme
-import ru.robert_grammy.gifshooter.ui.config.UnispaceFont
 import javax.swing.UIManager
 import javax.swing.plaf.UIResource
 

@@ -1,4 +1,4 @@
-package ru.robert_grammy.gifshooter.ui.config
+package ru.robert_grammy.gifshooter.config
 
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Component

@@ -1,7 +1,5 @@
-package ru.robert_grammy.gifshooter.ui.config
+package ru.robert_grammy.gifshooter.config
 
-import ru.robert_grammy.gifshooter.config.Config
-import ru.robert_grammy.gifshooter.config.UIProperties
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Color
 import java.util.Locale
@@ -33,6 +31,8 @@ enum class Theme {
             }
         }
 
+        val TRANSPARENT_COLOR = Color(0x00000000, true)
+
         fun reload(themeName: String) {
             setSettings(themeName)
             load()
@@ -44,7 +44,7 @@ enum class Theme {
         }
     }
 
-    private var value: Color = Color(0xFF.rotateLeft(24), true)
+    private var value: Color = Color(0x00000000, true)
 
     fun get() = value
     fun resource() = ColorUIResource(value)

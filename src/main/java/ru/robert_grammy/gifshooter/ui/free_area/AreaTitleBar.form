@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.robert_grammy.gifshooter.ui.free_area.AreaTitleBar">
+  <grid id="27dc6" binding="rootPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="582" height="30"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="ed614" binding="titlePane" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="West"/>
+        <properties/>
+        <border type="empty">
+          <size top="0" left="10" bottom="0" right="10"/>
+        </border>
+        <children>
+          <component id="59ad8" class="javax.swing.JLabel" binding="title" custom-create="true">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <font/>
+              <icon value="assets/images/icons/program_icon.png"/>
+              <text value="Область захвата"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="34bc6" class="javax.swing.JButton" binding="captureButton" custom-create="true">
+        <constraints border-constraint="East"/>
+        <properties>
+          <maximumSize width="30" height="30"/>
+          <minimumSize width="30" height="30"/>
+          <preferredSize width="30" height="30"/>
+          <text value=""/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

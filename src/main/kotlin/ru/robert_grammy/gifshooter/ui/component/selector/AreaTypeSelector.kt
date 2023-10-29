@@ -3,25 +3,26 @@ package ru.robert_grammy.gifshooter.ui.component.selector
 import ru.robert_grammy.gifshooter.config.Strings
 import ru.robert_grammy.gifshooter.control.LocaleComponent
 import ru.robert_grammy.gifshooter.control.ThemeComponent
-import ru.robert_grammy.gifshooter.ui.config.ComponentDimension
-import ru.robert_grammy.gifshooter.ui.config.Theme
+import ru.robert_grammy.gifshooter.config.ComponentDimension
+import ru.robert_grammy.gifshooter.config.Theme
+import ru.robert_grammy.gifshooter.control.listener.SelectorCardChangeListener
 import ru.robert_grammy.gifshooter.ui.graphics.SelectorListRenderer
 import ru.robert_grammy.gifshooter.ui.graphics.SelectorUI
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Graphics
 import javax.swing.BorderFactory
 import javax.swing.JComboBox
+import javax.swing.JPanel
 
-class AreaTypeSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
+object AreaTypeSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
 
-    companion object {
-        private val CARDS = arrayOf("SCREEN", "AREA")
-    }
+    private fun readResolve(): Any = AreaTypeSelector
+
+    private val CARDS = arrayOf("SCREEN", "FREE_AREA")
 
     private lateinit var selectorUI: SelectorUI
 
     init {
-        updateTexts()
         minimumSize = ComponentDimension.LINE_HEIGHT_30.get()
         border = BorderFactory.createLineBorder(Theme.BORDER_COLOR.get(), 2)
     }

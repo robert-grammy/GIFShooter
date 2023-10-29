@@ -3,8 +3,8 @@ package ru.robert_grammy.gifshooter.ui.component.selector
 import ru.robert_grammy.gifshooter.config.Strings
 import ru.robert_grammy.gifshooter.control.LocaleComponent
 import ru.robert_grammy.gifshooter.control.ThemeComponent
-import ru.robert_grammy.gifshooter.ui.config.ComponentDimension
-import ru.robert_grammy.gifshooter.ui.config.Theme
+import ru.robert_grammy.gifshooter.config.ComponentDimension
+import ru.robert_grammy.gifshooter.config.Theme
 import ru.robert_grammy.gifshooter.ui.graphics.SelectorListRenderer
 import ru.robert_grammy.gifshooter.ui.graphics.SelectorUI
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
@@ -12,16 +12,15 @@ import java.awt.Graphics
 import javax.swing.BorderFactory
 import javax.swing.JComboBox
 
-class FPSSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
+object FPSSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
 
-    companion object {
-        val FRAME_LIST = arrayListOf(50, 25, 20, 10, 5, 4, 2, 1)
-    }
+    private fun readResolve(): Any = FPSSelector
+
+    val FRAME_LIST = arrayListOf(50, 25, 20, 10, 5, 4, 2, 1)
 
     private lateinit var selectorUI: SelectorUI
 
     init {
-        updateTexts()
         minimumSize = ComponentDimension.LINE_HEIGHT_30.get()
         border = BorderFactory.createLineBorder(Theme.BORDER_COLOR.get(), 2)
     }

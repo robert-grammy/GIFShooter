@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.robert_grammy.gifshooter.ui.main_window.ProgramWindow">
+  <grid id="27dc6" binding="rootPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <nested-form id="8570" form-file="ru/robert_grammy/gifshooter/ui/main_window/ProgramTitleBar.form" binding="programTitleBar">
+        <constraints border-constraint="North"/>
+      </nested-form>
+      <grid id="64947" binding="contentPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <nested-form id="6bc8f" form-file="ru/robert_grammy/gifshooter/ui/main_window/ProgramMainPane.form" binding="programMainPane">
+            <constraints border-constraint="Center"/>
+          </nested-form>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
