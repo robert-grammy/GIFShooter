@@ -6,8 +6,8 @@ import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
 import ru.robert_grammy.gifshooter.control.listener.FrameMouseDragListener;
-import ru.robert_grammy.gifshooter.ui.component.ColoredButton;
-import ru.robert_grammy.gifshooter.ui.component.LineLabel;
+import ru.robert_grammy.gifshooter.ui.component.button.ColoredButton;
+import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
 
 import javax.swing.*;
 

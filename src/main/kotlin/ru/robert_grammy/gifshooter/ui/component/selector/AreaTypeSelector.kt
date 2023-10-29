@@ -18,7 +18,10 @@ object AreaTypeSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
 
     private fun readResolve(): Any = AreaTypeSelector
 
-    private val CARDS = arrayOf("SCREEN", "FREE_AREA")
+    const val SCREEN_CARD = "SCREEN";
+    const val FREE_AREA_CARD = "FREE_AREA"
+
+    private val CARDS = arrayOf(SCREEN_CARD, FREE_AREA_CARD)
 
     private lateinit var selectorUI: SelectorUI
 

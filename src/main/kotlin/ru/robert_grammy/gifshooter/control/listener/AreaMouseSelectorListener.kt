@@ -1,5 +1,6 @@
 package ru.robert_grammy.gifshooter.control.listener
 
+import ru.robert_grammy.gifshooter.control.ProgramController
 import java.awt.Dimension
 import java.awt.Point
 import java.awt.Rectangle
@@ -11,7 +12,7 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class AreaMouseSelectorListener() : MouseAdapter(), KeyListener {
+object AreaMouseSelectorListener : MouseAdapter(), KeyListener {
 
     var firstX = -1
         private set
@@ -33,12 +34,12 @@ class AreaMouseSelectorListener() : MouseAdapter(), KeyListener {
         secondX = -1
         secondY = -1
         clicked = false
-        // window.areaSelectorFrame.hideSelectorFrame() - скрыть окно выделения
-        var areaDimension = Dimension(area.width+8, area.height+8)
-        // window.freeAreaFrame.captureArea.preferredSize = areaDimension - указать размеры
-        // window.freeAreaFrame.captureArea.setSize(areaDimension.width, areaDimension.height) - Указать размеры
-        // window.freeAreaFrame.frame.pack() - упаковка
-        // window.freeAreaFrame.frame.location = Point(area.x-5, area.y-35) - установить локацию
+        ProgramController.FreeAreaSelector.hide()
+        ProgramController.MainFrame.show()
+        ProgramController.FreeAreaFrame.show()
+        val areaDimension = Dimension(area.width, area.height)
+        ProgramController.FreeAreaFrame.setSize(areaDimension)
+        ProgramController.FreeAreaFrame.setLocation(Point(area.x-5, area.y-35))
     }
 
     override fun mouseDragged(e: MouseEvent?) {
@@ -50,7 +51,7 @@ class AreaMouseSelectorListener() : MouseAdapter(), KeyListener {
         clicked = true
         secondX = e.x
         secondY = e.y
-        //window.areaSelectorFrame.clearBackground()
+        ProgramController.FreeAreaSelector.clearBackground()
     }
 
     fun getRectangle() = Rectangle(min(firstX, secondX), min(firstY, secondY), max(abs(firstX-secondX), 300), max(abs(firstY-secondY), 30))
@@ -58,9 +59,11 @@ class AreaMouseSelectorListener() : MouseAdapter(), KeyListener {
 
     override fun keyPressed(e: KeyEvent?) {
         if (e == null) return
-//        if (window.areaSelectorFrame.isVisible && e.keyCode == KeyEvent.VK_ESCAPE) {
-//            window.areaSelectorFrame.hideSelectorFrame()
-//        }
+        if (ProgramController.FreeAreaSelector.isVisible && e.keyCode == KeyEvent.VK_ESCAPE) {
+            ProgramController.FreeAreaSelector.hide()
+            ProgramController.MainFrame.show()
+            ProgramController.FreeAreaFrame.show()
+        }
     }
 
     override fun keyTyped(e: KeyEvent?) {}

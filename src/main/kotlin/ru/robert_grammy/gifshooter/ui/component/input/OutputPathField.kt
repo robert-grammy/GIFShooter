@@ -1,4 +1,4 @@
-package ru.robert_grammy.gifshooter.ui.component
+package ru.robert_grammy.gifshooter.ui.component.input
 
 import ru.robert_grammy.gifshooter.config.Strings
 import ru.robert_grammy.gifshooter.config.Theme

@@ -7,15 +7,15 @@
     <properties/>
     <border type="none"/>
     <children>
-      <nested-form id="8570" form-file="ru/robert_grammy/gifshooter/ui/main_window/ProgramTitleBar.form" binding="programTitleBar">
+      <nested-form id="bdd22" form-file="ru/robert_grammy/gifshooter/ui/main_window/ProgramTitleBar.form" binding="programTitleBar">
         <constraints border-constraint="North"/>
       </nested-form>
-      <grid id="64947" binding="contentPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="447ab" binding="contentPane" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
         <children>
-          <nested-form id="6bc8f" form-file="ru/robert_grammy/gifshooter/ui/main_window/ProgramMainPane.form" binding="programMainPane">
+          <nested-form id="dcea2" form-file="ru/robert_grammy/gifshooter/ui/main_window/ProgramMainPane.form" binding="programMainPane">
             <constraints border-constraint="Center"/>
           </nested-form>
         </children>

@@ -4,17 +4,20 @@ import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
+import ru.robert_grammy.gifshooter.control.listener.AllocateButtonListener;
 import ru.robert_grammy.gifshooter.control.listener.SelectorCardChangeListener;
-import ru.robert_grammy.gifshooter.ui.component.ColoredButton;
-import ru.robert_grammy.gifshooter.ui.component.LineLabel;
-import ru.robert_grammy.gifshooter.ui.component.OutputPathField;
+import ru.robert_grammy.gifshooter.record.area.CaptureArea;
+import ru.robert_grammy.gifshooter.record.area.FreeArea;
+import ru.robert_grammy.gifshooter.record.area.ScreenArea;
+import ru.robert_grammy.gifshooter.ui.component.button.ColoredButton;
+import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
+import ru.robert_grammy.gifshooter.ui.component.input.OutputPathField;
 import ru.robert_grammy.gifshooter.ui.component.selector.AreaTypeSelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.DelaySelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.FPSSelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.ScreenSelector;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.io.File;
 import java.util.Arrays;
 
@@ -103,6 +106,7 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
 
     public void loadListeners() {
         areaTypeSelector.addActionListener(new SelectorCardChangeListener((AreaTypeSelector) areaTypeSelector, areaTypeOptionPane));
+        freeAreaAllocateButton.addActionListener(AllocateButtonListener.INSTANCE);
     }
 
     @Override
@@ -146,6 +150,15 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
 
     public int getDelay() {
         return DelaySelector.INSTANCE.getDELAY_LIST().get(frameDelaySelector.getSelectedIndex());
+    }
+
+    public CaptureArea getCaptureArea() {
+        String selected = ((AreaTypeSelector) areaTypeSelector).getSelected();
+        if (selected.equals(AreaTypeSelector.FREE_AREA_CARD)) {
+            return FreeArea.INSTANCE;
+        } else {
+            return new ScreenArea(screenSelector.getSelectedIndex());
+        }
     }
 
 }

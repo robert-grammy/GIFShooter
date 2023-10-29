@@ -1,6 +1,6 @@
 package ru.robert_grammy.gifshooter.ui.graphics
 
-import ru.robert_grammy.gifshooter.ui.component.ColoredButton
+import ru.robert_grammy.gifshooter.ui.component.button.ColoredButton
 import ru.robert_grammy.gifshooter.config.ComponentDimension
 import ru.robert_grammy.gifshooter.config.Theme
 import java.awt.Insets

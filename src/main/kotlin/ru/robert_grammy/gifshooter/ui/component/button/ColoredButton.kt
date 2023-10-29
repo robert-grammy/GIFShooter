@@ -1,4 +1,4 @@
-package ru.robert_grammy.gifshooter.ui.component
+package ru.robert_grammy.gifshooter.ui.component.button
 
 import ru.robert_grammy.gifshooter.control.ThemeComponent
 import ru.robert_grammy.gifshooter.config.ComponentDimension

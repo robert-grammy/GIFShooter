@@ -121,10 +121,10 @@
       </item>
     </group>
     <group name="Custom">
-      <item class="ru.robert_grammy.gifshooter.ui.ProgramTitleBar" icon="assets/images/icons/program_icon.png" removable="true" auto-create-binding="true" can-attach-label="false">
+      <item class="ru.robert_grammy.gifshooter.ui.main_window.ProgramTitleBar" icon="assets/images/icons/program_icon.png" removable="true" auto-create-binding="true" can-attach-label="false">
         <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
       </item>
-      <item class="ru.robert_grammy.gifshooter.ui.ProgramMainPane" icon="assets/images/icons/program_icon.png" removable="true" auto-create-binding="true" can-attach-label="false">
+      <item class="ru.robert_grammy.gifshooter.ui.main_window.ProgramMainPane" icon="assets/images/icons/program_icon.png" removable="true" auto-create-binding="true" can-attach-label="false">
         <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
       </item>
       <item class="ru.robert_grammy.gifshooter.ui.free_area.AreaTitleBar" icon="assets/images/icons/program_icon.png" removable="true" auto-create-binding="true" can-attach-label="false">

@@ -32,6 +32,7 @@ enum class Theme {
         }
 
         val TRANSPARENT_COLOR = Color(0x00000000, true)
+        val BACKGROUND_DARKER = Color(0xAA555555.toInt(), true)
 
         fun reload(themeName: String) {
             setSettings(themeName)
