@@ -7,7 +7,7 @@ import javax.swing.JLabel
 import javax.swing.JList
 import javax.swing.ListCellRenderer
 
-class SelectorListRenderer : ListCellRenderer<String> {
+class ListRenderer : ListCellRenderer<String> {
 
     override fun getListCellRendererComponent(list: JList<out String>?, value: String?, index: Int, isSelected: Boolean, cellHasFocus: Boolean): Component {
         val result = JLabel(value)

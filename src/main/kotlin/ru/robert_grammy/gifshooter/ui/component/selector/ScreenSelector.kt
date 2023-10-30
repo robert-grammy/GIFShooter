@@ -5,7 +5,7 @@ import ru.robert_grammy.gifshooter.control.LocaleComponent
 import ru.robert_grammy.gifshooter.control.ThemeComponent
 import ru.robert_grammy.gifshooter.config.ComponentDimension
 import ru.robert_grammy.gifshooter.config.Theme
-import ru.robert_grammy.gifshooter.ui.graphics.SelectorListRenderer
+import ru.robert_grammy.gifshooter.ui.graphics.ListRenderer
 import ru.robert_grammy.gifshooter.ui.graphics.SelectorUI
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Graphics
@@ -57,7 +57,7 @@ object ScreenSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
     override fun updateTheme() {
         selectorUI = SelectorUI(this as JComboBox<Any>)
         setUI(selectorUI)
-        setRenderer(SelectorListRenderer())
+        setRenderer(ListRenderer())
     }
 
 }

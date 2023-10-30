@@ -22,8 +22,8 @@ object ResourceLoader {
 
     val CLASS_LOADER = javaClass.classLoader
 
-    private fun getResource(name: String): URL? = CLASS_LOADER.getResource(name)
-    private fun getResourceAsStream(name: String): InputStream? = CLASS_LOADER.getResourceAsStream(name)
+    fun getResource(name: String): URL? = CLASS_LOADER.getResource(name)
+    fun getResourceAsStream(name: String): InputStream? = CLASS_LOADER.getResourceAsStream(name)
 
     fun getIcon(name: String, dirPath: String = ICONS_DIR) = ImageIcon(getResource(dirPath.plus(name)))
 

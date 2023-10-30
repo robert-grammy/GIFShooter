@@ -25,7 +25,6 @@ object FreeAreaSelectorFrame : JFrame() {
         }
 
         isUndecorated = true
-        isVisible = true
         clearBackground()
         size = Dimension(rectangle.width, rectangle.height)
         preferredSize = size
@@ -40,7 +39,7 @@ object FreeAreaSelectorFrame : JFrame() {
     override fun paint(g: Graphics?) {
         val graphics = g as Graphics2D
         if (areaMouseSelectorListener.clicked) {
-            graphics.color = Theme.SECONDARY_COLOR.get()
+            graphics.color = Theme.ACTIVE_COLOR.get()
             graphics.stroke = lineWeigh
             graphics.draw(areaMouseSelectorListener.getRectangle())
         }

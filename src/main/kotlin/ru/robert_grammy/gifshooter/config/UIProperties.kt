@@ -26,6 +26,13 @@ object UIProperties {
 
         set(ComponentKey.COMBO_BOX, PropertyKey.SELECTION_BACKGROUND, Theme.PRIMARY_COLOR.resource())
         set(ComponentKey.COMBO_BOX, PropertyKey.SELECTION_FOREGROUND, Theme.TEXT_COLOR.resource())
+
+        set(ComponentKey.LIST, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
+        set(ComponentKey.LIST, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
+        set(ComponentKey.LIST, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
+
+        set(ComponentKey.SCROLL_PANE, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
+        set(ComponentKey.SCROLL_PANE, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
     }
 
     fun set(component: ComponentKey, property: PropertyKey, resource: UIResource) {
@@ -39,7 +46,9 @@ object UIProperties {
         FORMATTED_TEXT_FIELD("FormattedTextField"),
         TEXT_FIELD("TextField"),
         LABEL("Label"),
-        SPINNER("Spinner");
+        SPINNER("Spinner"),
+        LIST("List"),
+        SCROLL_PANE("ScrollPane");
 
         fun and(property: PropertyKey) = "${componentName}.${property.get()}"
     }

@@ -371,7 +371,7 @@
           </component>
         </children>
       </grid>
-      <scrollpane id="5f61" binding="resultsInfoScroll">
+      <scrollpane id="5f61" binding="resultsInfoScroll" custom-create="true">
         <constraints>
           <grid row="6" column="1" row-span="3" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="90"/>
@@ -383,12 +383,7 @@
           <horizontalScrollBarPolicy value="31"/>
         </properties>
         <border type="none"/>
-        <children>
-          <component id="b1f99" class="javax.swing.JList" binding="resultsInfoList">
-            <constraints/>
-            <properties/>
-          </component>
-        </children>
+        <children/>
       </scrollpane>
     </children>
   </grid>

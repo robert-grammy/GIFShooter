@@ -26,7 +26,6 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
     }
 
     private void setupFrame() {
-        setVisible(false);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         reset();
         setAlwaysOnTop(true);
@@ -46,6 +45,7 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
     public void updateTexts() {
         areaTitleBar.updateTexts();
         areaBottomBar.updateTexts();
+        pack();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
         areaTitleBar.updateTheme();
         areaBottomBar.updateTheme();
 
-        areaPane.setBorder(BorderFactory.createLineBorder(Theme.SECONDARY_COLOR.get(), 5));
+        areaPane.setBorder(BorderFactory.createLineBorder(Theme.HOVER_COLOR.get(), 5));
         rootPane.setBorder(BorderFactory.createLineBorder(Theme.BORDER_COLOR.get(), 1));
     }
 

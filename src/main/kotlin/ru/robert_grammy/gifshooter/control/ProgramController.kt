@@ -1,5 +1,7 @@
 package ru.robert_grammy.gifshooter.control
 
+import ru.robert_grammy.gifshooter.config.Strings
+import ru.robert_grammy.gifshooter.config.Theme
 import ru.robert_grammy.gifshooter.ui.component.frame.FreeAreaSelectorFrame
 import ru.robert_grammy.gifshooter.ui.free_area.FreeAreaWindow
 import ru.robert_grammy.gifshooter.ui.main_window.ProgramWindow
@@ -20,12 +22,22 @@ object ProgramController {
         if (isLoaded) return
 
         MainFrame.load()
-
         FreeAreaFrame.load()
-
         FreeAreaSelector.load()
 
         isLoaded = MainFrame.isLoaded && FreeAreaFrame.isLoaded && FreeAreaSelector.isLoaded
+    }
+
+    fun setLocale(locale: String) {
+        Strings.reload(locale)
+        mainFrame.updateTexts()
+        freeAreaFrame.updateTexts()
+    }
+
+    fun setTheme(theme: String) {
+        Theme.reload(theme)
+        mainFrame.updateTheme()
+        freeAreaFrame.updateTheme()
     }
 
     fun getOutputFolder() = mainFrame.outputFolder
@@ -118,7 +130,6 @@ object ProgramController {
             if (isLoaded) return
             SwingUtilities.invokeLater {
                 freeAreaSelectorFrame = FreeAreaSelectorFrame
-                hide()
                 isLoaded = true
             }
         }

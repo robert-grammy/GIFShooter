@@ -17,5 +17,11 @@
       <file value="file://$PROJECT_DIR$/src/main/resources/configs/locales/strings_ru_RU.properties" />
       <base-name>strings</base-name>
     </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/configs/themes/theme_BlueDefault.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/configs/themes/theme_GreenDefault.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/configs/themes/theme_RedDefault.properties" />
+      <base-name>theme</base-name>
+    </custom-resource-bundle>
   </component>
 </project>

@@ -10,12 +10,15 @@ import ru.robert_grammy.gifshooter.record.area.CaptureArea;
 import ru.robert_grammy.gifshooter.record.area.FreeArea;
 import ru.robert_grammy.gifshooter.record.area.ScreenArea;
 import ru.robert_grammy.gifshooter.ui.component.button.ColoredButton;
+import ru.robert_grammy.gifshooter.ui.component.panel.ProgramScrollPane;
 import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
 import ru.robert_grammy.gifshooter.ui.component.input.OutputPathField;
 import ru.robert_grammy.gifshooter.ui.component.selector.AreaTypeSelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.DelaySelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.FPSSelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.ScreenSelector;
+import ru.robert_grammy.gifshooter.ui.language_dialog.LanguageSelectorDialog;
+import ru.robert_grammy.gifshooter.ui.theme_dialog.ThemeSelectorDialog;
 
 import javax.swing.*;
 import java.io.File;
@@ -48,7 +51,6 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
     private JButton captureButton;
     private JButton themeSelectButton;
     private JButton localeSelectButton;
-    private JList<Object> resultsInfoList;
 
     public ProgramMainPane() {
         rootPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -61,6 +63,7 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         initializeRecordFPSLine();
         initializeFrameDelayLine();
         initializeCaptureAndSettingsButtonsLine();
+        initializeResultInfoPane();
     }
 
     private void initializeLabels() {
@@ -104,9 +107,15 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         ColoredButton.Companion.setSquareStyle(localeSelectButton);
     }
 
+    private void initializeResultInfoPane() {
+        resultsInfoScroll = new ProgramScrollPane();
+    }
+
     public void loadListeners() {
         areaTypeSelector.addActionListener(new SelectorCardChangeListener((AreaTypeSelector) areaTypeSelector, areaTypeOptionPane));
         freeAreaAllocateButton.addActionListener(AllocateButtonListener.INSTANCE);
+        localeSelectButton.addActionListener(event -> new LanguageSelectorDialog());
+        themeSelectButton.addActionListener(event -> new ThemeSelectorDialog());
     }
 
     @Override
@@ -133,6 +142,11 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         ThemeComponent.Companion.update(pathChooseButton);
         ThemeComponent.Companion.update(resetFPSButton);
         ThemeComponent.Companion.update(resetFrameDelayButton);
+        ThemeComponent.Companion.update(captureButton);
+        ThemeComponent.Companion.update(themeSelectButton);
+        ThemeComponent.Companion.update(localeSelectButton);
+
+        ThemeComponent.Companion.update(resultsInfoScroll);
 
         ThemeComponent.Companion.update(areaTypeSelector);
         ThemeComponent.Companion.update(screenSelector);

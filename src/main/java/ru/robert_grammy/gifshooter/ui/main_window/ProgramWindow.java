@@ -19,6 +19,7 @@ public class ProgramWindow extends JFrame implements ThemeComponent, LocaleCompo
 
     public ProgramWindow() {
         getContentPane().add(rootPane);
+        setUndecorated(true);
         updateTexts();
         updateTheme();
         setupFrame();
@@ -26,7 +27,6 @@ public class ProgramWindow extends JFrame implements ThemeComponent, LocaleCompo
     }
 
     private void setupFrame() {
-        setUndecorated(true);
         setVisible(true);
         pack();
         setLocationRelativeTo(null);
@@ -41,6 +41,7 @@ public class ProgramWindow extends JFrame implements ThemeComponent, LocaleCompo
     public void updateTexts() {
         programTitleBar.updateTexts();
         programMainPane.updateTexts();
+        pack();
     }
 
     @Override
