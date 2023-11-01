@@ -2,6 +2,7 @@ package ru.robert_grammy.gifshooter.ui.main_window;
 
 import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
+import ru.robert_grammy.gifshooter.config.UIProperties;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
 import ru.robert_grammy.gifshooter.control.listener.FrameMouseDragListener;
@@ -55,10 +56,14 @@ public class ProgramTitleBar implements ThemeComponent, LocaleComponent {
     @Override
     public void updateTexts() {
         LocaleComponent.Companion.update(title);
+        updateTheme();
     }
 
     @Override
     public void updateTheme() {
+        SwingUtilities.updateComponentTreeUI(rootPane);
+        Arrays.stream(rootPane.getComponents()).forEach(SwingUtilities::updateComponentTreeUI);
+
         rootPane.setBackground(Theme.PRIMARY_COLOR.get());
         titlePane.setBackground(Theme.PRIMARY_COLOR.get());
         buttonsPane.setBackground(Theme.PRIMARY_COLOR.get());

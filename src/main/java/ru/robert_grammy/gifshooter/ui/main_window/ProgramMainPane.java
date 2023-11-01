@@ -2,14 +2,18 @@ package ru.robert_grammy.gifshooter.ui.main_window;
 
 import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
+import ru.robert_grammy.gifshooter.config.UIProperties;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
+import ru.robert_grammy.gifshooter.control.ProgramController;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
 import ru.robert_grammy.gifshooter.control.listener.AllocateButtonListener;
+import ru.robert_grammy.gifshooter.control.listener.CaptureButtonListener;
 import ru.robert_grammy.gifshooter.control.listener.SelectorCardChangeListener;
 import ru.robert_grammy.gifshooter.record.area.CaptureArea;
 import ru.robert_grammy.gifshooter.record.area.FreeArea;
 import ru.robert_grammy.gifshooter.record.area.ScreenArea;
 import ru.robert_grammy.gifshooter.ui.component.button.ColoredButton;
+import ru.robert_grammy.gifshooter.ui.component.frame.ProgramFileChooser;
 import ru.robert_grammy.gifshooter.ui.component.panel.ProgramScrollPane;
 import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
 import ru.robert_grammy.gifshooter.ui.component.input.OutputPathField;
@@ -51,6 +55,7 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
     private JButton captureButton;
     private JButton themeSelectButton;
     private JButton localeSelectButton;
+    private JPanel scrollContent;
 
     public ProgramMainPane() {
         rootPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -114,6 +119,19 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
     public void loadListeners() {
         areaTypeSelector.addActionListener(new SelectorCardChangeListener((AreaTypeSelector) areaTypeSelector, areaTypeOptionPane));
         freeAreaAllocateButton.addActionListener(AllocateButtonListener.INSTANCE);
+        pathChooseButton.addActionListener(event -> {
+            int result = ProgramFileChooser.INSTANCE.open();
+            if (result == JFileChooser.APPROVE_OPTION) {
+                outputPathTextField.setText(ProgramFileChooser.INSTANCE.getSelectedFile().getPath());
+            }
+        });
+        recordFPSSelector.addActionListener(event -> frameDelaySelector.setSelectedIndex(recordFPSSelector.getSelectedIndex()));
+        resetFPSButton.addActionListener(event -> {
+            recordFPSSelector.setSelectedIndex(1);
+            frameDelaySelector.setSelectedIndex(1);
+        });
+        resetFrameDelayButton.addActionListener(event -> frameDelaySelector.setSelectedIndex(recordFPSSelector.getSelectedIndex()));
+        captureButton.addActionListener(CaptureButtonListener.INSTANCE);
         localeSelectButton.addActionListener(event -> new LanguageSelectorDialog());
         themeSelectButton.addActionListener(event -> new ThemeSelectorDialog());
     }
@@ -129,6 +147,9 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         LocaleComponent.Companion.update(screenSelector);
         LocaleComponent.Companion.update(recordFPSSelector);
         LocaleComponent.Companion.update(frameDelaySelector);
+
+        updateTheme();
+        resetSelectors();
     }
 
     @Override
@@ -158,11 +179,11 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         return ((OutputPathField) outputPathTextField).getFolder();
     }
 
-    public int getFPS() {
+    public double getFPS() {
         return FPSSelector.INSTANCE.getFRAME_LIST().get(recordFPSSelector.getSelectedIndex());
     }
 
-    public int getDelay() {
+    public Byte getDelay() {
         return DelaySelector.INSTANCE.getDELAY_LIST().get(frameDelaySelector.getSelectedIndex());
     }
 
@@ -171,8 +192,23 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         if (selected.equals(AreaTypeSelector.FREE_AREA_CARD)) {
             return FreeArea.INSTANCE;
         } else {
-            return new ScreenArea(screenSelector.getSelectedIndex());
+            return new ScreenArea(((ScreenSelector) screenSelector).getSelectedScreen());
         }
+    }
+
+    public void changeCaptureButton(final boolean isRecording) {
+        if (isRecording) {
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_ON.get());
+            captureButton.setText(Strings.STOP_CAPTURE_BUTTON.get());
+        } else {
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_OFF.get());
+            captureButton.setText(Strings.START_CAPTURE_BUTTON.get());
+        }
+    }
+
+    private void resetSelectors() {
+        recordFPSSelector.setSelectedIndex(1);
+        frameDelaySelector.setSelectedIndex(1);
     }
 
 }

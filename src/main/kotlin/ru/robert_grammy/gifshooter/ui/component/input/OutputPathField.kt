@@ -15,13 +15,8 @@ class OutputPathField : JTextField() {
         text = FileSystemView.getFileSystemView().defaultDirectory.path.plus("\\").plus(Strings.PROGRAM_NAME.get())
     }
 
-    fun getFolder() : File {
-        val file = File(text)
-        return if (!file.isDirectory) {
-            file.parentFile
-        } else {
-            file
-        }
+    fun getFolder(): File {
+        return File(text)
     }
 
 }

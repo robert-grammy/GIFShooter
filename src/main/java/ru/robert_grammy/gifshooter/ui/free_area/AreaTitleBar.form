@@ -19,6 +19,10 @@
             <properties>
               <font/>
               <icon value="assets/images/icons/program_icon.png"/>
+              <maximumSize width="200" height="30"/>
+              <minimumSize width="200" height="30"/>
+              <preferredSize width="200" height="30"/>
+              <requestFocusEnabled value="false"/>
               <text value="Область захвата"/>
             </properties>
           </component>

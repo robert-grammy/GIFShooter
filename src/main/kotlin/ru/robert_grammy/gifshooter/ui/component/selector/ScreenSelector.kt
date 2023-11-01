@@ -34,7 +34,7 @@ object ScreenSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
         super.paintComponent(g)
     }
 
-    fun getSelected() : Rectangle {
+    fun getSelectedScreen() : Rectangle {
         var rectangle = Rectangle(0,0,0,0)
         if (selectedIndex == 0) {
             for (device in GraphicsEnvironment.getLocalGraphicsEnvironment().screenDevices) {

@@ -57,8 +57,11 @@ enum class Theme {
         val BACKGROUND_DARKER = Color(0xAA555555.toInt(), true)
 
         fun reload(themeName: String) {
-            if (!themes.contains(themeName)) return
-            setSettings(themeName)
+            if (themes.contains(themeName)) {
+                setSettings(themeName)
+            } else {
+                setSettings(DEFAULT_THEME)
+            }
             load()
             UIProperties.loadProperties()
         }

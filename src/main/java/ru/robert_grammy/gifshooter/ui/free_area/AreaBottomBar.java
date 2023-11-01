@@ -5,6 +5,7 @@ import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
+import ru.robert_grammy.gifshooter.control.listener.CaptureButtonListener;
 import ru.robert_grammy.gifshooter.control.listener.FrameMouseDragListener;
 import ru.robert_grammy.gifshooter.ui.component.button.ColoredButton;
 import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
@@ -39,11 +40,13 @@ public class AreaBottomBar implements ThemeComponent, LocaleComponent {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(rootPane);
         FrameMouseDragListener listener = new FrameMouseDragListener(frame);
         rootPane.addMouseMotionListener(listener);
+        captureButton.addActionListener(CaptureButtonListener.INSTANCE);
     }
 
     @Override
     public void updateTexts() {
         LocaleComponent.Companion.update(dimensionInfoLabel);
+        updateTheme();
     }
 
     @Override
@@ -56,6 +59,14 @@ public class AreaBottomBar implements ThemeComponent, LocaleComponent {
 
     public void updateDimensionInfo(Dimension dimension) {
         dimensionLabel.setText(String.format(DIMENSION_FORMAT, dimension.width, dimension.height));
+    }
+
+    public  void changeCaptureButton(boolean isRecording) {
+        if (isRecording) {
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_ON.get());
+        } else {
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_OFF.get());
+        }
     }
 
 }

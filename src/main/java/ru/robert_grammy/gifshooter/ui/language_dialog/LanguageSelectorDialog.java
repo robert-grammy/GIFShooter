@@ -38,7 +38,6 @@ public class LanguageSelectorDialog extends JDialog implements ThemeComponent, L
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         updateTexts();
-        updateTheme();
 
         pack();
         setLocationRelativeTo(null);
@@ -94,6 +93,8 @@ public class LanguageSelectorDialog extends JDialog implements ThemeComponent, L
         LocaleComponent.Companion.update(dialogTitle);
         LocaleComponent.Companion.update(okButton);
         LocaleComponent.Companion.update(cancelButton);
+
+        updateTheme();
     }
 
     @Override

@@ -37,7 +37,6 @@ public class ThemeSelectorDialog extends JDialog implements ThemeComponent, Loca
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         updateTexts();
-        updateTheme();
 
         pack();
         setLocationRelativeTo(null);
@@ -87,6 +86,8 @@ public class ThemeSelectorDialog extends JDialog implements ThemeComponent, Loca
         LocaleComponent.Companion.update(dialogTitle);
         LocaleComponent.Companion.update(okButton);
         LocaleComponent.Companion.update(cancelButton);
+
+        updateTheme();
     }
 
     @Override

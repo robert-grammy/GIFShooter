@@ -16,7 +16,7 @@ object DelaySelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
 
     private fun readResolve(): Any = DelaySelector
 
-    val DELAY_LIST = arrayListOf(20, 40, 50, 100, 200, 250, 500, 1000)
+    val DELAY_LIST = arrayListOf<Byte>(2, 4, 5, 10, 20, 25, 50, 100)
 
     private lateinit var selectorUI: SelectorUI
 
@@ -37,7 +37,7 @@ object DelaySelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
     override fun updateTexts() {
         removeAllItems()
         DELAY_LIST.forEach {
-            addItem(String.format(Strings.DELAY_SELECTOR_FORMAT.get(), it))
+            addItem(String.format(Strings.DELAY_SELECTOR_FORMAT.get(), it*10))
         }
     }
 

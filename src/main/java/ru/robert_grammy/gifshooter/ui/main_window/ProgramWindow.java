@@ -4,6 +4,7 @@ import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
+import ru.robert_grammy.gifshooter.record.area.CaptureArea;
 import ru.robert_grammy.gifshooter.ui.graphics.ColoredBorder;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class ProgramWindow extends JFrame implements ThemeComponent, LocaleCompo
     private JPanel contentPane;
 
     public ProgramWindow() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().add(rootPane);
         setUndecorated(true);
         updateTexts();
@@ -53,27 +55,24 @@ public class ProgramWindow extends JFrame implements ThemeComponent, LocaleCompo
         rootPane.setBorder(BorderFactory.createLineBorder(Theme.BORDER_COLOR.get(), 1));
     }
 
-    public void setColorTheme(String themeName) {
-        Theme.Companion.reload(themeName);
-        updateTheme();
-    }
-
-    public void setStringsLocale(String locale) {
-        Strings.Companion.reload(locale);
-        updateTexts();
-        pack();
-    }
-
     public File getOutputFolder() {
         return programMainPane.getOutputFolder();
     }
 
-    public int getFPS() {
+    public double getFPS() {
         return programMainPane.getFPS();
     }
 
-    public int getDelay() {
+    public Byte getDelay() {
         return programMainPane.getDelay();
+    }
+
+    public CaptureArea getCaptureArea() {
+       return programMainPane.getCaptureArea();
+    }
+
+    public void changeCaptureButtons(final boolean isRecording) {
+        programMainPane.changeCaptureButton(isRecording);
     }
 
 }

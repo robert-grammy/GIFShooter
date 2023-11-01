@@ -17,8 +17,8 @@ class ProgramScrollBar(private val barOrientation: Orientation) : JScrollBar(), 
     }
 
     enum class Orientation(private val borderInsets: Insets) {
-        VERTICAL(Insets(1,0,0,0)),
-        HORIZONTAL(Insets(0,1,0,0));
+        VERTICAL(Insets(0,1,0,0)),
+        HORIZONTAL(Insets(1,0,0,0));
 
         fun getInsets() = borderInsets
     }

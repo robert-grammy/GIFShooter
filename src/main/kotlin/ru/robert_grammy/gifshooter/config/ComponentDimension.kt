@@ -7,7 +7,8 @@ import java.awt.Dimension
 enum class ComponentDimension {
 
     SQUARE_BUTTON,
-    LINE_HEIGHT_30;
+    LINE_HEIGHT_30,
+    FILE_CHOOSER_BUTTON;
 
     companion object {
         private const val WIDTH_AND_HEIGHT_SEPARATOR = "x"

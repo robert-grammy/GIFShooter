@@ -11,28 +11,28 @@ object UIProperties {
         set(ComponentKey.COMBO_BOX, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
         set(ComponentKey.FORMATTED_TEXT_FIELD, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
         set(ComponentKey.TEXT_FIELD, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
+        set(ComponentKey.LIST, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
+        set(ComponentKey.SCROLL_PANE, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
 
         set(ComponentKey.LABEL, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
         set(ComponentKey.BUTTON, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
         set(ComponentKey.COMBO_BOX, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
         set(ComponentKey.FORMATTED_TEXT_FIELD, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
         set(ComponentKey.TEXT_FIELD, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
-
-        set(ComponentKey.LABEL, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
-        set(ComponentKey.BUTTON, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
-        set(ComponentKey.COMBO_BOX, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
-        set(ComponentKey.SPINNER, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
-        set(ComponentKey.TEXT_FIELD, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
+        set(ComponentKey.LIST, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
+        set(ComponentKey.SCROLL_PANE, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
 
         set(ComponentKey.COMBO_BOX, PropertyKey.SELECTION_BACKGROUND, Theme.PRIMARY_COLOR.resource())
         set(ComponentKey.COMBO_BOX, PropertyKey.SELECTION_FOREGROUND, Theme.TEXT_COLOR.resource())
+    }
 
-        set(ComponentKey.LIST, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
-        set(ComponentKey.LIST, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
-        set(ComponentKey.LIST, PropertyKey.FONT, UnispaceFont.SIZE_16.resource())
-
-        set(ComponentKey.SCROLL_PANE, PropertyKey.BACKGROUND, Theme.PRIMARY_COLOR.resource())
-        set(ComponentKey.SCROLL_PANE, PropertyKey.FOREGROUND, Theme.TEXT_COLOR.resource())
+    fun loadFont() {
+        set(ComponentKey.LABEL, PropertyKey.FONT, ProgramFont.SIZE_16.resource())
+        set(ComponentKey.BUTTON, PropertyKey.FONT, ProgramFont.SIZE_16.resource())
+        set(ComponentKey.COMBO_BOX, PropertyKey.FONT, ProgramFont.SIZE_16.resource())
+        set(ComponentKey.SPINNER, PropertyKey.FONT, ProgramFont.SIZE_16.resource())
+        set(ComponentKey.TEXT_FIELD, PropertyKey.FONT, ProgramFont.SIZE_16.resource())
+        set(ComponentKey.LIST, PropertyKey.FONT, ProgramFont.SIZE_16.resource())
     }
 
     fun set(component: ComponentKey, property: PropertyKey, resource: UIResource) {

@@ -1,5 +1,7 @@
 package ru.robert_grammy.gifshooter.ui.free_area;
 
+import ru.robert_grammy.gifshooter.config.ProgramIcon;
+import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
@@ -19,7 +21,6 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
         setUndecorated(true);
         initializeAreaPane();
         updateTexts();
-        updateTheme();
         setupFrame();
         setBackground(Theme.Companion.getTRANSPARENT_COLOR());
         loadListeners();
@@ -46,6 +47,7 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
         areaTitleBar.updateTexts();
         areaBottomBar.updateTexts();
         pack();
+        updateTheme();
     }
 
     @Override
@@ -61,14 +63,18 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
     }
 
     public void setAreaLocation(Point point) {
+        point.x -= 10;
+        point.y -= 10;
         setLocation(point);
     }
 
     public void setAreaDimension(Dimension dimension) {
+        updateDimensionInfo(dimension);
+        dimension.width += 30;
+        dimension.height += 30;
         areaPane.setPreferredSize(dimension);
         areaPane.setSize(dimension);
         pack();
-        updateDimensionInfo(dimension);
     }
 
     public void reset() {
@@ -77,11 +83,22 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
     }
 
     public Rectangle getArea() {
-        return areaPane.getBounds();
+        return new Rectangle(getX() + 16, getY() + 46, areaPane.getWidth() - 30, areaPane.getHeight() - 30);
     }
 
     private void updateDimensionInfo(Dimension dimension) {
+
         areaBottomBar.updateDimensionInfo(dimension);
+    }
+
+    public  void changeCaptureButtons(boolean isRecording) {
+        areaTitleBar.changeCaptureButton(isRecording);
+        areaBottomBar.changeCaptureButton(isRecording);
+        if (isRecording) {
+            areaPane.setBorder(BorderFactory.createLineBorder(Theme.CAPTURE.get(), 5));
+        } else {
+            areaPane.setBorder(BorderFactory.createLineBorder(Theme.HOVER_COLOR.get(), 5));
+        }
     }
 
 }

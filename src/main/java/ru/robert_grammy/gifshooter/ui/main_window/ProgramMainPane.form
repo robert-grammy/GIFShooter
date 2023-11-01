@@ -383,7 +383,15 @@
           <horizontalScrollBarPolicy value="31"/>
         </properties>
         <border type="none"/>
-        <children/>
+        <children>
+          <grid id="42d7c" binding="scrollContent" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="2" vgap="2">
+            <margin top="2" left="2" bottom="2" right="2"/>
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
       </scrollpane>
     </children>
   </grid>

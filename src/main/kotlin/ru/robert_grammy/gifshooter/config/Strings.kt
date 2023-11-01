@@ -31,7 +31,12 @@ enum class Strings(private val key: String) {
     DIALOG_SELECT_LOCALE_BUTTON_CANCEL("gui_shooter.dialog.locale_select.button.cancel"),
     DIALOG_SELECT_THEME_TITLE("gui_shooter.dialog.theme_select.title"),
     DIALOG_SELECT_THEME_BUTTON_OK("gui_shooter.dialog.theme_select.button.confirm"),
-    DIALOG_SELECT_THEME_BUTTON_CANCEL("gui_shooter.dialog.theme_select.button.cancel");
+    DIALOG_SELECT_THEME_BUTTON_CANCEL("gui_shooter.dialog.theme_select.button.cancel"),
+
+    FILE_CHOOSER_BUTTON_OK("swing.file_chooser.button.ok"),
+    FILE_CHOOSER_BUTTON_CANCEL("swing.file_chooser.button.cancel"),
+
+    FONT_FILENAME("font_filename");
 
     companion object {
         private const val BUNDLE_NAME = "strings"

@@ -37,7 +37,7 @@ object FPSSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
     override fun updateTexts() {
         removeAllItems()
         for (i in 0 ..< FRAME_LIST.size) {
-            addItem(String.format(Strings.FPS_SELECTOR_FORMAT.get(), FRAME_LIST[i], DelaySelector.DELAY_LIST[i]))
+            addItem(String.format(Strings.FPS_SELECTOR_FORMAT.get(), FRAME_LIST[i], DelaySelector.DELAY_LIST[i]*10))
         }
     }
 

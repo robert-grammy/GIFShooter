@@ -1,12 +1,19 @@
 package ru.robert_grammy.gifshooter.control
 
+import ru.robert_grammy.gifshooter.config.ProgramFont
 import ru.robert_grammy.gifshooter.config.Strings
 import ru.robert_grammy.gifshooter.config.Theme
+import ru.robert_grammy.gifshooter.config.UIProperties
+import ru.robert_grammy.gifshooter.record.GifRecorder
+import ru.robert_grammy.gifshooter.record.GifWriter
+import ru.robert_grammy.gifshooter.record.ScreenTaker
 import ru.robert_grammy.gifshooter.ui.component.frame.FreeAreaSelectorFrame
+import ru.robert_grammy.gifshooter.ui.component.view.CreateGifProgressBar
 import ru.robert_grammy.gifshooter.ui.free_area.FreeAreaWindow
 import ru.robert_grammy.gifshooter.ui.main_window.ProgramWindow
 import java.awt.Dimension
 import java.awt.Point
+import java.awt.Rectangle
 import javax.swing.SwingUtilities
 
 object ProgramController {
@@ -15,11 +22,19 @@ object ProgramController {
     private lateinit var freeAreaFrame: FreeAreaWindow
     private lateinit var freeAreaSelectorFrame: FreeAreaSelectorFrame
 
+    private lateinit var lastRecorder: GifRecorder
+
     var isLoaded = false
+        private set
+
+    var isRecording = false
         private set
 
     fun loadProgram() {
         if (isLoaded) return
+
+        UIProperties.loadProperties()
+        UIProperties.loadFont()
 
         MainFrame.load()
         FreeAreaFrame.load()
@@ -30,6 +45,7 @@ object ProgramController {
 
     fun setLocale(locale: String) {
         Strings.reload(locale)
+        ProgramFont.reload()
         mainFrame.updateTexts()
         freeAreaFrame.updateTexts()
     }
@@ -40,11 +56,29 @@ object ProgramController {
         freeAreaFrame.updateTheme()
     }
 
-    fun getOutputFolder() = mainFrame.outputFolder
+    fun startCapture() {
+        if (isRecording) return
+        val filename = GifWriter.createFilename()
+        val progressBar = CreateGifProgressBar(mainFrame.outputFolder, filename)
+        val screenTaker = ScreenTaker(mainFrame.captureArea, mainFrame.fps, progressBar)
+        println(mainFrame.delay)
+        val gifWriter = GifWriter(mainFrame.delay, mainFrame.outputFolder, filename, screenTaker, progressBar)
+        lastRecorder = GifRecorder(screenTaker, gifWriter)
 
-    fun getFPS() = mainFrame.fps
+        mainFrame.changeCaptureButtons(true)
+        freeAreaFrame.changeCaptureButtons(true)
 
-    fun getDelay() = mainFrame.delay
+        isRecording = true
+        lastRecorder.startCapture()
+    }
+    
+    fun stopCapture() {
+        if (!isRecording) return
+        mainFrame.changeCaptureButtons(false)
+        if (FreeAreaFrame.isVisible) freeAreaFrame.changeCaptureButtons(false)
+        isRecording = false
+        lastRecorder.stopCapture()
+    }
 
     object MainFrame {
 
@@ -108,13 +142,13 @@ object ProgramController {
             freeAreaFrame.setAreaLocation(point)
         }
 
-        fun getLocation() = freeAreaFrame.location
+        fun getLocation(): Point = freeAreaFrame.location
 
         fun reset() {
             freeAreaFrame.reset()
         }
 
-        fun getArea() = freeAreaFrame.area
+        fun getArea() : Rectangle = freeAreaFrame.area
 
     }
 
