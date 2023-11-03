@@ -16,8 +16,6 @@ class Record {
         return queue.removeFirstOrNull()!!
     }
 
-    fun isEmpty() = queue.isEmpty()
-
     fun isPresent() = queue.isNotEmpty()
 
 }

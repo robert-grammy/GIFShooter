@@ -35,15 +35,7 @@ object ScreenSelector : JComboBox<String>(), LocaleComponent, ThemeComponent {
     }
 
     fun getSelectedScreen() : Rectangle {
-        var rectangle = Rectangle(0,0,0,0)
-        if (selectedIndex == 0) {
-            for (device in GraphicsEnvironment.getLocalGraphicsEnvironment().screenDevices) {
-                rectangle = rectangle.union(device.defaultConfiguration.bounds)
-            }
-        } else {
-            rectangle = GraphicsEnvironment.getLocalGraphicsEnvironment().screenDevices[selectedIndex-1].defaultConfiguration.bounds
-        }
-        return rectangle
+        return GraphicsEnvironment.getLocalGraphicsEnvironment().screenDevices[selectedIndex-1].defaultConfiguration.bounds
     }
 
     override fun updateTexts() {

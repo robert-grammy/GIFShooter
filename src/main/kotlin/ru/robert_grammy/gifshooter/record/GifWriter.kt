@@ -23,33 +23,34 @@ class GifWriter(private val delay: Byte, private val outputFolder: File, private
         fun createFilename() = FILE_NAME_FORMAT.format(DATE_FORMAT.format(Date())).plus(".${GIF_EXTENSION}")
     }
 
-    private val thread = Thread(this)
     private val nativeWriter = ImageIO.getImageWritersBySuffix(GIF_EXTENSION).next()
     private lateinit var record: Record
     private lateinit var resultFile: File
     private lateinit var metadata: IIOMetadata
     private lateinit var outputStream: ImageOutputStream
     private var wasStarted = false
-    private var isWrote = false
+    private var wasStopped = false
+
+    private val thread = Thread(this)
 
     override fun run() {
-        createFile()
-        setupGifFormat()
         writeImageToFile()
-        saveFile()
-        isWrote = true
     }
 
     fun start(record: Record) {
         if (wasStarted) return
         this.record = record
         wasStarted = true
+
+        createFile()
+        setupGifFormat()
         thread.start()
+        thread.join()
+        saveFile()
     }
 
     fun stop() {
-        if (isWrote) return
-        thread.interrupt()
+        wasStopped = true
     }
 
     private fun createFile() {
@@ -64,7 +65,7 @@ class GifWriter(private val delay: Byte, private val outputFolder: File, private
         outputStream = FileImageOutputStream(resultFile)
         nativeWriter.output = outputStream
 
-        val imageTypeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_3BYTE_BGR)
+        val imageTypeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_INT_RGB)
         metadata = nativeWriter.getDefaultImageMetadata(imageTypeSpecifier, params)
         val metaFormatName = metadata.nativeMetadataFormatName
         val root = metadata.getAsTree(metaFormatName) as IIOMetadataNode
@@ -89,14 +90,15 @@ class GifWriter(private val delay: Byte, private val outputFolder: File, private
     }
 
     private fun writeImageToFile() {
-        while (!Thread.currentThread().isInterrupted) {
-            while (record.isEmpty() && !screenTaker.isRecorded) {
+        while (!wasStopped) {
+            while (!record.isPresent() && !screenTaker.wasStopped) {
                 Thread.onSpinWait()
             }
             while (record.isPresent()) {
                 val image = record.poll()
                 nativeWriter.writeToSequence(IIOImage(image, null, metadata), null)
                 progressBar.handledFramesIncrement()
+                if (screenTaker.wasStopped) progressBar.updatePercent()
             }
         }
     }
@@ -104,6 +106,7 @@ class GifWriter(private val delay: Byte, private val outputFolder: File, private
     private fun saveFile() {
         nativeWriter.endWriteSequence()
         outputStream.close()
+        progressBar.finish()
     }
 
     private fun getNode(rootNode: IIOMetadataNode, nodeName: String): IIOMetadataNode {

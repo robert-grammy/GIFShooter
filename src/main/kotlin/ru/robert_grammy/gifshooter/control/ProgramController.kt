@@ -11,12 +11,18 @@ import ru.robert_grammy.gifshooter.ui.component.frame.FreeAreaSelectorFrame
 import ru.robert_grammy.gifshooter.ui.component.view.CreateGifProgressBar
 import ru.robert_grammy.gifshooter.ui.free_area.FreeAreaWindow
 import ru.robert_grammy.gifshooter.ui.main_window.ProgramWindow
+import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Dimension
 import java.awt.Point
 import java.awt.Rectangle
+import java.awt.image.BufferedImage
+import javax.swing.JProgressBar
 import javax.swing.SwingUtilities
 
 object ProgramController {
+
+    private const val ICON_FILENAME = "window_icon.png"
+    private val ICON_DIMENSION = Dimension(64, 64)
 
     private lateinit var mainFrame: ProgramWindow
     private lateinit var freeAreaFrame: FreeAreaWindow
@@ -24,8 +30,7 @@ object ProgramController {
 
     private lateinit var lastRecorder: GifRecorder
 
-    var isLoaded = false
-        private set
+    private var isLoaded = false
 
     var isRecording = false
         private set
@@ -61,12 +66,14 @@ object ProgramController {
         val filename = GifWriter.createFilename()
         val progressBar = CreateGifProgressBar(mainFrame.outputFolder, filename)
         val screenTaker = ScreenTaker(mainFrame.captureArea, mainFrame.fps, progressBar)
-        println(mainFrame.delay)
         val gifWriter = GifWriter(mainFrame.delay, mainFrame.outputFolder, filename, screenTaker, progressBar)
         lastRecorder = GifRecorder(screenTaker, gifWriter)
 
         mainFrame.changeCaptureButtons(true)
-        freeAreaFrame.changeCaptureButtons(true)
+        if (FreeAreaFrame.isVisible) freeAreaFrame.changeCaptureButtons(true)
+        mainFrame.freeze(true)
+
+        mainFrame.addProgressBar(progressBar)
 
         isRecording = true
         lastRecorder.startCapture()
@@ -76,8 +83,27 @@ object ProgramController {
         if (!isRecording) return
         mainFrame.changeCaptureButtons(false)
         if (FreeAreaFrame.isVisible) freeAreaFrame.changeCaptureButtons(false)
+        mainFrame.freeze(false)
         isRecording = false
         lastRecorder.stopCapture()
+    }
+
+    fun removeProgressBar(progressBar: JProgressBar) {
+        mainFrame.removeProgressBar(progressBar)
+    }
+
+    fun createFrameIcon() : BufferedImage {
+        val resultIcon = BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB)
+        val icon = ResourceLoader.getImage(ICON_FILENAME)
+        val graphics = resultIcon.graphics
+
+        graphics.color = Theme.SECONDARY_COLOR.get()
+        graphics.fillRect(0, 0, ICON_DIMENSION.width, ICON_DIMENSION.height)
+
+        graphics.drawImage(icon, 0, 0, null)
+        graphics.dispose()
+
+        return resultIcon
     }
 
     object MainFrame {

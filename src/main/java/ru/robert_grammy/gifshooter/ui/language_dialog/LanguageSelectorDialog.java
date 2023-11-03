@@ -17,6 +17,9 @@ import java.awt.event.KeyEvent;
 import java.util.Arrays;
 
 public class LanguageSelectorDialog extends JDialog implements ThemeComponent, LocaleComponent {
+
+    private final static Dimension MIN_SIZE = new Dimension(300, 90);
+
     private JPanel contentPane;
     private JList<String> languages;
     private JScrollPane scrollPane;
@@ -31,11 +34,9 @@ public class LanguageSelectorDialog extends JDialog implements ThemeComponent, L
         getRootPane().setDefaultButton(okButton);
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        scrollPane.setMinimumSize(new Dimension(300, 90));
+        scrollPane.setMinimumSize(MIN_SIZE);
 
-        okButton.addActionListener(e -> onOK());
-        cancelButton.addActionListener(e -> onCancel());
-        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        loadListeners();
 
         updateTexts();
 
@@ -44,14 +45,18 @@ public class LanguageSelectorDialog extends JDialog implements ThemeComponent, L
         setVisible(true);
     }
 
-    private void onOK() {
-        if (languages.getSelectedIndex() == -1) return;
-        ProgramController.INSTANCE.setLocale((String) Strings.Companion.getLocales().keySet().toArray()[languages.getSelectedIndex()]);
-        dispose();
-    }
+    private void loadListeners() {
+        okButton.addActionListener(e -> {
+            if (languages.getSelectedIndex() == -1) return;
+            ProgramController.INSTANCE.setLocale((String) Strings.Companion.getLocales().keySet().toArray()[languages.getSelectedIndex()]);
+            dispose();
+        });
 
-    private void onCancel() {
-        dispose();
+        cancelButton.addActionListener(e -> {
+            dispose();
+        });
+
+        contentPane.registerKeyboardAction(e -> dispose(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     private void createUIComponents() {

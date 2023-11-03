@@ -1,9 +1,11 @@
 package ru.robert_grammy.gifshooter.control.listener
 
+import ru.robert_grammy.gifshooter.control.ProgramController
 import java.awt.Desktop
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import java.io.File
+import javax.swing.JProgressBar
 
 class ProgressBarClickListener(private val folder: File) : MouseAdapter() {
 
@@ -24,6 +26,11 @@ class ProgressBarClickListener(private val folder: File) : MouseAdapter() {
         if (!isEntered) return
         if (e.button == MouseEvent.BUTTON1) {
             Desktop.getDesktop().open(folder)
+        }
+        if (e.button == MouseEvent.BUTTON3) {
+            if (e.source is JProgressBar) {
+                ProgramController.removeProgressBar(e.source as JProgressBar)
+            }
         }
     }
 

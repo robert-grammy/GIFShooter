@@ -1,6 +1,5 @@
 package ru.robert_grammy.gifshooter.config
 
-import ru.robert_grammy.gifshooter.control.LocaleComponent
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Font
 import java.awt.GraphicsEnvironment

@@ -2,25 +2,26 @@ package ru.robert_grammy.gifshooter.ui.main_window;
 
 import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
-import ru.robert_grammy.gifshooter.config.UIProperties;
+import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
-import ru.robert_grammy.gifshooter.control.ProgramController;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
 import ru.robert_grammy.gifshooter.control.listener.AllocateButtonListener;
 import ru.robert_grammy.gifshooter.control.listener.CaptureButtonListener;
 import ru.robert_grammy.gifshooter.control.listener.SelectorCardChangeListener;
+import ru.robert_grammy.gifshooter.record.area.AllDevisesArea;
 import ru.robert_grammy.gifshooter.record.area.CaptureArea;
 import ru.robert_grammy.gifshooter.record.area.FreeArea;
 import ru.robert_grammy.gifshooter.record.area.ScreenArea;
 import ru.robert_grammy.gifshooter.ui.component.button.ColoredButton;
 import ru.robert_grammy.gifshooter.ui.component.frame.ProgramFileChooser;
-import ru.robert_grammy.gifshooter.ui.component.panel.ProgramScrollPane;
-import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
 import ru.robert_grammy.gifshooter.ui.component.input.OutputPathField;
+import ru.robert_grammy.gifshooter.ui.component.panel.ProgramScrollPane;
 import ru.robert_grammy.gifshooter.ui.component.selector.AreaTypeSelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.DelaySelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.FPSSelector;
 import ru.robert_grammy.gifshooter.ui.component.selector.ScreenSelector;
+import ru.robert_grammy.gifshooter.ui.component.view.CreateGifProgressBar;
+import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
 import ru.robert_grammy.gifshooter.ui.language_dialog.LanguageSelectorDialog;
 import ru.robert_grammy.gifshooter.ui.theme_dialog.ThemeSelectorDialog;
 
@@ -57,8 +58,11 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
     private JButton localeSelectButton;
     private JPanel scrollContent;
 
+    private static final int DEFAULT_FPS_INDEX = 2;
+    private static final int MARGIN_VALUE = 5;
+
     public ProgramMainPane() {
-        rootPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        rootPane.setBorder(BorderFactory.createEmptyBorder(MARGIN_VALUE,MARGIN_VALUE,MARGIN_VALUE,MARGIN_VALUE));
     }
 
     private void createUIComponents() {
@@ -114,6 +118,10 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
 
     private void initializeResultInfoPane() {
         resultsInfoScroll = new ProgramScrollPane();
+
+        scrollContent = new JPanel();
+        scrollContent.setLayout(new BoxLayout(scrollContent, BoxLayout.PAGE_AXIS));
+        scrollContent.setBorder(BorderFactory.createEmptyBorder(MARGIN_VALUE, MARGIN_VALUE, MARGIN_VALUE, MARGIN_VALUE));
     }
 
     public void loadListeners() {
@@ -127,8 +135,7 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         });
         recordFPSSelector.addActionListener(event -> frameDelaySelector.setSelectedIndex(recordFPSSelector.getSelectedIndex()));
         resetFPSButton.addActionListener(event -> {
-            recordFPSSelector.setSelectedIndex(1);
-            frameDelaySelector.setSelectedIndex(1);
+            resetSelectors();
         });
         resetFrameDelayButton.addActionListener(event -> frameDelaySelector.setSelectedIndex(recordFPSSelector.getSelectedIndex()));
         captureButton.addActionListener(CaptureButtonListener.INSTANCE);
@@ -147,6 +154,8 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         LocaleComponent.Companion.update(screenSelector);
         LocaleComponent.Companion.update(recordFPSSelector);
         LocaleComponent.Companion.update(frameDelaySelector);
+
+        Arrays.stream(scrollContent.getComponents()).forEach(LocaleComponent.Companion::update);
 
         updateTheme();
         resetSelectors();
@@ -173,6 +182,8 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         ThemeComponent.Companion.update(screenSelector);
         ThemeComponent.Companion.update(recordFPSSelector);
         ThemeComponent.Companion.update(frameDelaySelector);
+
+        scrollContent.setBackground(Theme.PRIMARY_COLOR.get());
     }
 
     public File getOutputFolder() {
@@ -192,7 +203,12 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         if (selected.equals(AreaTypeSelector.FREE_AREA_CARD)) {
             return FreeArea.INSTANCE;
         } else {
-            return new ScreenArea(((ScreenSelector) screenSelector).getSelectedScreen());
+            if (screenSelector.getSelectedIndex() == 0) {
+                return AllDevisesArea.INSTANCE;
+            } else {
+                ScreenArea.INSTANCE.setBounds(((ScreenSelector) screenSelector).getSelectedScreen());
+                return ScreenArea.INSTANCE;
+            }
         }
     }
 
@@ -207,8 +223,35 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
     }
 
     private void resetSelectors() {
-        recordFPSSelector.setSelectedIndex(1);
-        frameDelaySelector.setSelectedIndex(1);
+        recordFPSSelector.setSelectedIndex(DEFAULT_FPS_INDEX);
+        frameDelaySelector.setSelectedIndex(DEFAULT_FPS_INDEX);
+    }
+
+    public void addProgressBar(CreateGifProgressBar progressBar) {
+        scrollContent.add(progressBar.getSeparator(), 0);
+        scrollContent.add(progressBar, 0);
+    }
+
+    public void removeProgressBar(JProgressBar progressBar) {
+        scrollContent.remove(((CreateGifProgressBar) progressBar).getSeparator());
+        scrollContent.remove(progressBar);
+        scrollContent.updateUI();
+        scrollContent.repaint();
+    }
+
+    public void freeze(boolean isFreezing) {
+        areaTypeSelector.setEnabled(!isFreezing);
+        screenSelector.setEnabled(!isFreezing);
+        freeAreaAllocateButton.setEnabled(!isFreezing);
+        outputPathTextField.setEnabled(!isFreezing);
+        recordFPSSelector.setEnabled(!isFreezing);
+        frameDelaySelector.setEnabled(!isFreezing);
+        themeSelectButton.setEnabled(!isFreezing);
+        localeSelectButton.setEnabled(!isFreezing);
+        resultsInfoScroll.setEnabled(!isFreezing);
+        pathChooseButton.setEnabled(!isFreezing);
+        resetFPSButton.setEnabled(!isFreezing);
+        resetFrameDelayButton.setEnabled(!isFreezing);
     }
 
 }

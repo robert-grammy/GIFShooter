@@ -16,6 +16,9 @@ import java.awt.event.KeyEvent;
 import java.util.Arrays;
 
 public class ThemeSelectorDialog extends JDialog implements ThemeComponent, LocaleComponent {
+
+    private static final Dimension MIN_SIZE = new Dimension(300, 90);
+
     private JPanel contentPane;
     private JList<String> themes;
     private JScrollPane scrollPane;
@@ -30,12 +33,9 @@ public class ThemeSelectorDialog extends JDialog implements ThemeComponent, Loca
         getRootPane().setDefaultButton(okButton);
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        scrollPane.setMinimumSize(new Dimension(300, 90));
+        scrollPane.setMinimumSize(MIN_SIZE);
 
-        okButton.addActionListener(e -> onOK());
-        cancelButton.addActionListener(e -> onCancel());
-        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
+        loadListeners();
         updateTexts();
 
         pack();
@@ -43,14 +43,18 @@ public class ThemeSelectorDialog extends JDialog implements ThemeComponent, Loca
         setVisible(true);
     }
 
-    private void onOK() {
-        if (themes.getSelectedIndex() == -1) return;
-        ProgramController.INSTANCE.setTheme(themes.getSelectedValue());
-        dispose();
-    }
+    private void loadListeners() {
+        okButton.addActionListener(e -> {
+            if (themes.getSelectedIndex() == -1) return;
+            ProgramController.INSTANCE.setTheme(themes.getSelectedValue());
+            dispose();
+        });
 
-    private void onCancel() {
-        dispose();
+        cancelButton.addActionListener(e -> {
+            dispose();
+        });
+
+        contentPane.registerKeyboardAction(e -> dispose(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     private void createUIComponents() {

@@ -2,46 +2,44 @@ package ru.robert_grammy.gifshooter.record
 
 import ru.robert_grammy.gifshooter.record.area.CaptureArea
 import ru.robert_grammy.gifshooter.ui.component.view.CreateGifProgressBar
+import java.util.concurrent.TimeUnit
+import kotlin.math.max
 
 class ScreenTaker(private val captureArea: CaptureArea, private val fps: Double, private val progressBar: CreateGifProgressBar) : Runnable {
 
-    companion object {
-        private const val SECOND = 1000000000L
-    }
-
     private val thread = Thread(this)
     private var wasStarted = false
-    var isRecorded = false
+
+    var wasStopped = false
         private set
+
     private lateinit var record: Record
 
+    private var passedFrames = 0
+
     override fun run() {
-        var delta = 0.0
-        var lastTime = System.nanoTime()
-        while (!Thread.currentThread().isInterrupted) {
-            val now = System.nanoTime()
-            val elapsedTime = now - lastTime
-            lastTime = now
-            delta += elapsedTime / (SECOND / fps)
-            while (delta > 1) {
-                record.put(captureArea.takeScreenshot())
-                progressBar.amountFramesIncrement()
-                delta--
-            }
+        while (!wasStopped) {
+            val startTime = System.nanoTime()
+            if (!wasStopped) {
+                record.put(captureArea.getNewFrame())
+                passedFrames++
+            } else break
+            val endTime = System.nanoTime()
+            val elapsed = endTime - startTime
+            val sleep = max(0.0, (1000000000 / fps) - elapsed).toLong()
+            TimeUnit.NANOSECONDS.sleep(sleep)
         }
-        isRecorded = true
     }
 
     fun start(record: Record) {
-        if (wasStarted) return
-        wasStarted = true
         this.record = record
+        wasStarted = true
         thread.start()
     }
 
     fun stop() {
-        if (isRecorded) return
-        thread.interrupt()
+        wasStopped = true
+        progressBar.startPercentCalculateFrame(passedFrames)
     }
 
 }

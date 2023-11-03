@@ -4,6 +4,7 @@ import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
+import ru.robert_grammy.gifshooter.control.ProgramController;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
 
 import javax.swing.*;
@@ -46,6 +47,7 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
     public void updateTexts() {
         areaTitleBar.updateTexts();
         areaBottomBar.updateTexts();
+        setTitle(Strings.FREE_AREA_TITLE.get());
         pack();
         updateTheme();
     }
@@ -60,6 +62,8 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
 
         areaPane.setBorder(BorderFactory.createLineBorder(Theme.HOVER_COLOR.get(), 5));
         rootPane.setBorder(BorderFactory.createLineBorder(Theme.BORDER_COLOR.get(), 1));
+
+        setIconImage(ProgramController.INSTANCE.createFrameIcon());
     }
 
     public void setAreaLocation(Point point) {
@@ -87,7 +91,6 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
     }
 
     private void updateDimensionInfo(Dimension dimension) {
-
         areaBottomBar.updateDimensionInfo(dimension);
     }
 

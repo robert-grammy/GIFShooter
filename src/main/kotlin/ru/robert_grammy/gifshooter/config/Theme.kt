@@ -3,8 +3,7 @@ package ru.robert_grammy.gifshooter.config
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Color
 import java.io.File
-import java.util.Locale
-import java.util.ResourceBundle
+import java.util.*
 import javax.swing.plaf.ColorUIResource
 
 enum class Theme {
@@ -23,7 +22,7 @@ enum class Theme {
     companion object {
         private const val BUNDLE_NAME = "theme"
         private const val BUNDLE_EXTENSION = ".properties"
-        const val DEFAULT_THEME = "BlueDefault"
+        private const val DEFAULT_THEME = "DefaultBlue"
         private const val BUNDLE_PATH = "${ResourceLoader.THEMES_DIR}$BUNDLE_NAME"
         private lateinit var CONFIG: ResourceBundle
 

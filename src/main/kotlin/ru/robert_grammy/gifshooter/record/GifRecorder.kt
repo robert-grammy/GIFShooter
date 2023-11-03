@@ -14,7 +14,7 @@ class GifRecorder(private val taker: ScreenTaker, private val writer: GifWriter)
             writer.start(record)
         }
 
-        stopThread = Thread {
+        stopThread = Thread  {
             taker.stop()
             writer.stop()
         }

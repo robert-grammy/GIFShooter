@@ -19,9 +19,11 @@ enum class Strings(private val key: String) {
     FPS_SELECTOR_FORMAT("gui_shooter.main_frame.fps_selector_pane.fps_format"),
     DELAY_LINE_LABEL("gui_shooter.main_frame.delay_selector_pane.label"),
     DELAY_SELECTOR_FORMAT("gui_shooter.main_frame.delay_selector_pane.delay_format"),
-
     START_CAPTURE_BUTTON("gui_shooter.main_frame.capture_and_settings_pane.capture_button.start"),
     STOP_CAPTURE_BUTTON("gui_shooter.main_frame.capture_and_settings_pane.capture_button.stop"),
+    PROGRESS_BAR_RECORD_IN_PROCESS_FORMAT("gui_shooter.main_frame.results_scroll_pane.progress_bar.is_recording"),
+    PROGRESS_BAR_RECORD_SAVING_FORMAT("gui_shooter.main_frame.results_scroll_pane.progress_bar.is_saving"),
+    PROGRESS_BAR_RECORD_COMPLETE_FORMAT("gui_shooter.main_frame.results_scroll_pane.progress_bar.done"),
 
     FREE_AREA_TITLE("gui_shooter.free_area.title_bar.title"),
     FREE_AREA_SIZE_INFO_FORMAT("gui_shooter.free_area.bottom_bar.label"),
