@@ -20,7 +20,7 @@ object ResourceLoader {
     const val LOCALES_DIR = "${CONFIGS_DIR}locales/"
     const val THEMES_DIR = "${CONFIGS_DIR}themes/"
 
-    val CLASS_LOADER = javaClass.classLoader
+    val CLASS_LOADER: ClassLoader = Thread.currentThread().contextClassLoader
 
     fun getResource(path: String): URL? = CLASS_LOADER.getResource(path)
     fun getResourceAsStream(path: String): InputStream? = CLASS_LOADER.getResourceAsStream(path)

@@ -35,6 +35,7 @@ public class ProgramTitleBar implements ThemeComponent, LocaleComponent {
 
     private void initializeCloseButton() {
         closeButton = new ColoredButton();
+        closeButton.setIcon(ProgramIcon.CLOSE.getColored(Theme.TEXT_COLOR.hex()));
         closeButton.addActionListener(event -> {
             System.exit(0);
         });
@@ -42,6 +43,7 @@ public class ProgramTitleBar implements ThemeComponent, LocaleComponent {
 
     private void initializeMinimizeButton() {
         minimizeButton = new ColoredButton();
+        minimizeButton.setIcon(ProgramIcon.MINIMIZE.getColored(Theme.TEXT_COLOR.hex()));
         minimizeButton.addActionListener(event -> {
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(rootPane);
             frame.setExtendedState(JFrame.ICONIFIED);
@@ -50,7 +52,7 @@ public class ProgramTitleBar implements ThemeComponent, LocaleComponent {
 
     private void initializeTitle() {
         title = new LineLabel(Strings.PROGRAM_NAME);
-        title.setIcon(ProgramIcon.PROGRAM.get());
+        title.setIcon(ProgramIcon.PROGRAM.getColored(Theme.TEXT_COLOR.hex()));
     }
 
     @Override
@@ -62,7 +64,7 @@ public class ProgramTitleBar implements ThemeComponent, LocaleComponent {
     @Override
     public void updateTheme() {
         SwingUtilities.updateComponentTreeUI(rootPane);
-        Arrays.stream(rootPane.getComponents()).forEach(SwingUtilities::updateComponentTreeUI);
+        title.setIcon(ProgramIcon.PROGRAM.getColored(Theme.TEXT_COLOR.hex()));
 
         rootPane.setBackground(Theme.PRIMARY_COLOR.get());
         titlePane.setBackground(Theme.PRIMARY_COLOR.get());
@@ -72,6 +74,9 @@ public class ProgramTitleBar implements ThemeComponent, LocaleComponent {
 
         ((ColoredButton) closeButton).setHoverColor(Theme.HOVER_CLOSE_BUTTON.get());
         ((ColoredButton) closeButton).setActiveColor(Theme.ACTIVE_CLOSE_BUTTON.get());
+
+        closeButton.setIcon(ProgramIcon.CLOSE.getColored(Theme.TEXT_COLOR.hex()));
+        minimizeButton.setIcon(ProgramIcon.MINIMIZE.getColored(Theme.TEXT_COLOR.hex()));
     }
 
 }

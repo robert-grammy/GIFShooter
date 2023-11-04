@@ -55,7 +55,6 @@ public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComp
     @Override
     public void updateTheme() {
         SwingUtilities.updateComponentTreeUI(rootPane);
-        Arrays.stream(rootPane.getComponents()).forEach(SwingUtilities::updateComponentTreeUI);
 
         areaTitleBar.updateTheme();
         areaBottomBar.updateTheme();

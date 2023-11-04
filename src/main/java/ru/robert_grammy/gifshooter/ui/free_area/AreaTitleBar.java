@@ -25,10 +25,11 @@ public class AreaTitleBar implements ThemeComponent, LocaleComponent {
 
     private void initializeTitle() {
         title = new LineLabel(Strings.FREE_AREA_TITLE);
+        title.setIcon(ProgramIcon.PROGRAM.getColored(Theme.TEXT_COLOR.hex()));
     }
 
     private void initializeButton() {
-        captureButton = new ColoredButton(ProgramIcon.RECORDING_STATUS_OFF.get());
+        captureButton = new ColoredButton(ProgramIcon.RECORDING_STATUS.getColored(Theme.TEXT_COLOR.hex()));
     }
 
     public void loadListeners() {
@@ -50,13 +51,15 @@ public class AreaTitleBar implements ThemeComponent, LocaleComponent {
         titlePane.setBackground(Theme.PRIMARY_COLOR.get());
 
         ThemeComponent.Companion.update(captureButton);
+        captureButton.setIcon(ProgramIcon.RECORDING_STATUS.getColored(Theme.TEXT_COLOR.hex()));
+        title.setIcon(ProgramIcon.PROGRAM.getColored(Theme.TEXT_COLOR.hex()));
     }
 
     public  void changeCaptureButton(boolean isRecording) {
         if (isRecording) {
-            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_ON.get());
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS.getColored(Theme.CAPTURE.hex()));
         } else {
-            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_OFF.get());
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS.getColored(Theme.TEXT_COLOR.hex()));
         }
     }
 

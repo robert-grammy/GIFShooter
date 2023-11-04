@@ -33,7 +33,7 @@ public class AreaBottomBar implements ThemeComponent, LocaleComponent {
     }
 
     private void initializeButton() {
-        captureButton = new ColoredButton(ProgramIcon.RECORDING_STATUS_OFF.get());
+        captureButton = new ColoredButton(ProgramIcon.RECORDING_STATUS.getColored(Theme.TEXT_COLOR.hex()));
     }
 
     public void loadListeners() {
@@ -55,17 +55,18 @@ public class AreaBottomBar implements ThemeComponent, LocaleComponent {
         titlePane.setBackground(Theme.PRIMARY_COLOR.get());
 
         ThemeComponent.Companion.update(captureButton);
+        captureButton.setIcon(ProgramIcon.RECORDING_STATUS.getColored(Theme.TEXT_COLOR.hex()));
     }
 
     public void updateDimensionInfo(Dimension dimension) {
         dimensionLabel.setText(String.format(DIMENSION_FORMAT, dimension.width, dimension.height));
     }
 
-    public  void changeCaptureButton(boolean isRecording) {
+    public void changeCaptureButton(boolean isRecording) {
         if (isRecording) {
-            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_ON.get());
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS.getColored(Theme.CAPTURE.hex()));
         } else {
-            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_OFF.get());
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS.getColored(Theme.TEXT_COLOR.hex()));
         }
     }
 

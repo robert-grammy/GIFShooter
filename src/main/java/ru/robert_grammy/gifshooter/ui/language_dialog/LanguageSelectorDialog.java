@@ -9,7 +9,6 @@ import ru.robert_grammy.gifshooter.ui.component.button.ColoredButton;
 import ru.robert_grammy.gifshooter.ui.component.panel.ProgramScrollPane;
 import ru.robert_grammy.gifshooter.ui.component.selector.ProgramList;
 import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
-import ru.robert_grammy.gifshooter.ui.graphics.ListRenderer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -104,8 +103,7 @@ public class LanguageSelectorDialog extends JDialog implements ThemeComponent, L
 
     @Override
     public void updateTheme() {
-        SwingUtilities.updateComponentTreeUI(rootPane);
-        Arrays.stream(rootPane.getComponents()).forEach(SwingUtilities::updateComponentTreeUI);
+        SwingUtilities.updateComponentTreeUI(contentPane);
 
         ThemeComponent.Companion.update(scrollPane);
         ThemeComponent.Companion.update(okButton);

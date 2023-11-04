@@ -84,13 +84,13 @@ class ScrollUI : BasicScrollBarUI() {
     }
 
     override fun createIncreaseButton(orientation: Int): JButton {
-        return ColoredButton(ProgramIcon.DROPDOWN_DEFAULT.get()).apply {
+        return ColoredButton(ProgramIcon.DROPDOWN_DEFAULT.getColored(Theme.TEXT_COLOR.hex())).apply {
             preferredSize = Dimension(20,20)
         }
     }
 
     override fun createDecreaseButton(orientation: Int): JButton {
-        return ColoredButton(ProgramIcon.DROPDOWN_ACTIVE.get()).apply {
+        return ColoredButton(ProgramIcon.DROPDOWN_ACTIVE.getColored(Theme.TEXT_COLOR.hex())).apply {
             preferredSize = Dimension(20,20)
         }
     }

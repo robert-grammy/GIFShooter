@@ -38,11 +38,24 @@ enum class Theme {
 
         private val themes = ArrayList<String>()
 
-        fun getThemeNames() = ArrayList<String>(themes)
+        fun getThemeNames() = ArrayList(themes)
 
-        fun loadThemes() {
+        private fun loadThemes() {
+            //TODO Copy configs to local directory
+//            val path = Paths.get(ResourceLoader.getResource("configs/themes")!!.toURI())
+//
+//            Files.walk(path, 1).map {
+//                it.name
+//            }.filter {
+//                it.startsWith(BUNDLE_NAME) && it.endsWith(BUNDLE_EXTENSION)
+//            }.map {
+//                it.substring(BUNDLE_NAME.length+1, it.indexOf(BUNDLE_EXTENSION))
+//            }.forEach {
+//                themes.add(it)
+//            }
+
             val themeFolder = ResourceLoader.getResource("configs/themes")!!
-            val folder = File(themeFolder.file)
+            val folder = File(themeFolder.path)
             folder.listFiles()!!.map(File::getName).filter {
                 it.startsWith(BUNDLE_NAME) && it.endsWith(BUNDLE_EXTENSION)
             }.map {
@@ -74,6 +87,9 @@ enum class Theme {
     private var value: Color = Color(0x00000000, true)
 
     fun get() = value
+
     fun resource() = ColorUIResource(value)
+
+    fun hex() = value.rgb
 
 }

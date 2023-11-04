@@ -1,10 +1,10 @@
 package ru.robert_grammy.gifshooter.ui.component.button
 
-import ru.robert_grammy.gifshooter.control.ThemeComponent
 import ru.robert_grammy.gifshooter.config.ComponentDimension
 import ru.robert_grammy.gifshooter.config.Strings
 import ru.robert_grammy.gifshooter.config.Theme
 import ru.robert_grammy.gifshooter.control.LocaleComponent
+import ru.robert_grammy.gifshooter.control.ThemeComponent
 import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Graphics
@@ -92,6 +92,7 @@ class ColoredButton : JButton, ThemeComponent, LocaleComponent {
         activeColor = Theme.ACTIVE_COLOR.get()
         textColor = Theme.TEXT_COLOR.get()
         borderColor = Theme.BORDER_COLOR.get()
+        foreground = Theme.TEXT_COLOR.get()
     }
 
     override fun updateTexts() {

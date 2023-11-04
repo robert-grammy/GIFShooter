@@ -9,6 +9,7 @@ import ru.robert_grammy.gifshooter.record.GifWriter
 import ru.robert_grammy.gifshooter.record.ScreenTaker
 import ru.robert_grammy.gifshooter.ui.component.frame.FreeAreaSelectorFrame
 import ru.robert_grammy.gifshooter.ui.component.view.CreateGifProgressBar
+import ru.robert_grammy.gifshooter.ui.error_dialog.ErrorDialog.ErrorHandler
 import ru.robert_grammy.gifshooter.ui.free_area.FreeAreaWindow
 import ru.robert_grammy.gifshooter.ui.main_window.ProgramWindow
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
@@ -37,6 +38,7 @@ object ProgramController {
 
     fun loadProgram() {
         if (isLoaded) return
+        Thread.setDefaultUncaughtExceptionHandler(ErrorHandler())
 
         UIProperties.loadProperties()
         UIProperties.loadFont()

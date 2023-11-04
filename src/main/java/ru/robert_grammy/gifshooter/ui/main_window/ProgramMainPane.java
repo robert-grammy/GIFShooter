@@ -91,28 +91,28 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
 
     private void initializeOutputFolderLine() {
         outputPathTextField = new OutputPathField();
-        pathChooseButton = new ColoredButton(ProgramIcon.FOLDER.get());
+        pathChooseButton = new ColoredButton();
         ColoredButton.Companion.setDefaultStyle(pathChooseButton);
     }
 
     private void initializeRecordFPSLine() {
         recordFPSSelector = FPSSelector.INSTANCE;
-        resetFPSButton = new ColoredButton(ProgramIcon.RESET.get());
+        resetFPSButton = new ColoredButton();
         ColoredButton.Companion.setSquareStyle(resetFPSButton);
     }
 
     private void initializeFrameDelayLine() {
         frameDelaySelector = DelaySelector.INSTANCE;
-        resetFrameDelayButton = new ColoredButton(ProgramIcon.RESET.get());
+        resetFrameDelayButton = new ColoredButton();
         ColoredButton.Companion.setSquareStyle(resetFrameDelayButton);
     }
 
     private void initializeCaptureAndSettingsButtonsLine() {
-        captureButton = new ColoredButton(Strings.START_CAPTURE_BUTTON, ProgramIcon.RECORDING_STATUS_OFF.get());
+        captureButton = new ColoredButton(Strings.START_CAPTURE_BUTTON, ProgramIcon.RECORDING_STATUS.getColored(Theme.TEXT_COLOR.hex()));
         ColoredButton.Companion.setDefaultStyle(captureButton);
-        themeSelectButton = new ColoredButton(ProgramIcon.THEME.get());
+        themeSelectButton = new ColoredButton();
         ColoredButton.Companion.setSquareStyle(themeSelectButton);
-        localeSelectButton = new ColoredButton(ProgramIcon.PLANET.get());
+        localeSelectButton = new ColoredButton();
         ColoredButton.Companion.setSquareStyle(localeSelectButton);
     }
 
@@ -164,7 +164,6 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
     @Override
     public void updateTheme() {
         SwingUtilities.updateComponentTreeUI(rootPane);
-        Arrays.stream(rootPane.getComponents()).forEach(SwingUtilities::updateComponentTreeUI);
 
         Arrays.stream(lineLabelsPane.getComponents()).forEach(ThemeComponent.Companion::update);
 
@@ -176,12 +175,21 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         ThemeComponent.Companion.update(themeSelectButton);
         ThemeComponent.Companion.update(localeSelectButton);
 
+        pathChooseButton.setIcon(ProgramIcon.FOLDER.getColored(Theme.TEXT_COLOR.hex()));
+        resetFPSButton.setIcon(ProgramIcon.RESET.getColored(Theme.TEXT_COLOR.hex()));
+        resetFrameDelayButton.setIcon(ProgramIcon.RESET.getColored(Theme.TEXT_COLOR.hex()));
+        themeSelectButton.setIcon(ProgramIcon.THEME.getColored(Theme.TEXT_COLOR.hex()));
+        localeSelectButton.setIcon(ProgramIcon.PLANET.getColored(Theme.TEXT_COLOR.hex()));
+        captureButton.setIcon(ProgramIcon.RECORDING_STATUS.getColored(Theme.TEXT_COLOR.hex()));
+
         ThemeComponent.Companion.update(resultsInfoScroll);
 
         ThemeComponent.Companion.update(areaTypeSelector);
         ThemeComponent.Companion.update(screenSelector);
         ThemeComponent.Companion.update(recordFPSSelector);
         ThemeComponent.Companion.update(frameDelaySelector);
+
+        ThemeComponent.Companion.update(outputPathTextField);
 
         scrollContent.setBackground(Theme.PRIMARY_COLOR.get());
     }
@@ -214,10 +222,10 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
 
     public void changeCaptureButton(final boolean isRecording) {
         if (isRecording) {
-            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_ON.get());
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS.getColored(Theme.CAPTURE.hex()));
             captureButton.setText(Strings.STOP_CAPTURE_BUTTON.get());
         } else {
-            captureButton.setIcon(ProgramIcon.RECORDING_STATUS_OFF.get());
+            captureButton.setIcon(ProgramIcon.RECORDING_STATUS.get());
             captureButton.setText(Strings.START_CAPTURE_BUTTON.get());
         }
     }

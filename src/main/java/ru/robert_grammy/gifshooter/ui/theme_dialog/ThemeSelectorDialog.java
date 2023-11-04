@@ -97,7 +97,6 @@ public class ThemeSelectorDialog extends JDialog implements ThemeComponent, Loca
     @Override
     public void updateTheme() {
         SwingUtilities.updateComponentTreeUI(rootPane);
-        Arrays.stream(rootPane.getComponents()).forEach(SwingUtilities::updateComponentTreeUI);
 
         ThemeComponent.Companion.update(scrollPane);
         ThemeComponent.Companion.update(okButton);
