@@ -1,5 +1,6 @@
 package ru.robert_grammy.gifshooter.ui.main_window;
 
+import ru.robert_grammy.gifshooter.config.Config;
 import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
@@ -125,7 +126,9 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
         pathChooseButton.addActionListener(event -> {
             int result = ProgramFileChooser.INSTANCE.open();
             if (result == JFileChooser.APPROVE_OPTION) {
-                outputPathTextField.setText(ProgramFileChooser.INSTANCE.getSelectedFile().getPath());
+                String path = ProgramFileChooser.INSTANCE.getSelectedFile().getPath();
+                outputPathTextField.setText(path);
+                Config.OUTPUT_FOLDER.set(path);
             }
         });
         recordFPSSelector.addActionListener(event -> frameDelaySelector.setSelectedIndex(recordFPSSelector.getSelectedIndex()));
