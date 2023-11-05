@@ -1,8 +1,9 @@
 package ru.robert_grammy.gifshooter.config
 
-import ru.robert_grammy.gifshooter.utils.ResourceLoader
+import ru.robert_grammy.gifshooter.utils.FileManager
 import java.awt.Color
 import java.io.File
+import java.net.URLClassLoader
 import java.util.*
 import javax.swing.plaf.ColorUIResource
 
@@ -23,11 +24,13 @@ enum class Theme {
         private const val BUNDLE_NAME = "theme"
         private const val BUNDLE_EXTENSION = ".properties"
         private const val DEFAULT_THEME = "DefaultBlue"
-        private const val BUNDLE_PATH = "${ResourceLoader.THEMES_DIR}$BUNDLE_NAME"
+        private val BUNDLE_PATH = "${FileManager.LOCAL_DIR}${FileManager.THEMES_DIR}"
         private lateinit var CONFIG: ResourceBundle
 
         private fun setSettings(themeName: String) {
-            CONFIG = ResourceBundle.getBundle(BUNDLE_PATH, Locale.of(themeName))
+            val file = File(BUNDLE_PATH)
+            val loader = URLClassLoader(arrayOf(file.toURI().toURL()))
+            CONFIG = ResourceBundle.getBundle(BUNDLE_NAME, Locale.of(themeName), loader)
         }
 
         private fun load() {
@@ -41,22 +44,8 @@ enum class Theme {
         fun getThemeNames() = ArrayList(themes)
 
         private fun loadThemes() {
-            //TODO Copy configs to local directory
-//            val path = Paths.get(ResourceLoader.getResource("configs/themes")!!.toURI())
-//
-//            Files.walk(path, 1).map {
-//                it.name
-//            }.filter {
-//                it.startsWith(BUNDLE_NAME) && it.endsWith(BUNDLE_EXTENSION)
-//            }.map {
-//                it.substring(BUNDLE_NAME.length+1, it.indexOf(BUNDLE_EXTENSION))
-//            }.forEach {
-//                themes.add(it)
-//            }
-
-            val themeFolder = ResourceLoader.getResource("configs/themes")!!
-            val folder = File(themeFolder.path)
-            folder.listFiles()!!.map(File::getName).filter {
+            val themeFolder = FileManager.getThemesFolder()
+            themeFolder.listFiles()!!.map(File::getName).filter {
                 it.startsWith(BUNDLE_NAME) && it.endsWith(BUNDLE_EXTENSION)
             }.map {
                 it.substring(BUNDLE_NAME.length+1, it.indexOf(BUNDLE_EXTENSION))

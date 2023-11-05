@@ -2,10 +2,7 @@ package ru.robert_grammy.gifshooter.ui.component.panel
 
 import ru.robert_grammy.gifshooter.config.Theme
 import ru.robert_grammy.gifshooter.control.ThemeComponent
-import ru.robert_grammy.gifshooter.ui.graphics.ColoredBorder
 import ru.robert_grammy.gifshooter.ui.graphics.ProgramScrollBar
-import ru.robert_grammy.gifshooter.ui.graphics.ScrollUI
-import java.awt.Insets
 import javax.swing.BorderFactory
 import javax.swing.JScrollPane
 

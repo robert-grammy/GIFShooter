@@ -20,9 +20,9 @@ object ResourceLoader {
     const val LOCALES_DIR = "${CONFIGS_DIR}locales/"
     const val THEMES_DIR = "${CONFIGS_DIR}themes/"
 
-    val CLASS_LOADER: ClassLoader = Thread.currentThread().contextClassLoader
+    private val CLASS_LOADER: ClassLoader = Thread.currentThread().contextClassLoader
 
-    fun getResource(path: String): URL? = CLASS_LOADER.getResource(path)
+    private fun getResource(path: String): URL? = CLASS_LOADER.getResource(path)
     fun getResourceAsStream(path: String): InputStream? = CLASS_LOADER.getResourceAsStream(path)
 
     fun resourceExists(name: String, dirPath: String) : Boolean {
@@ -47,16 +47,12 @@ object ResourceLoader {
 
     fun getProperties(name: String, dirPath: String = CONFIGS_DIR): Properties {
         return Properties().apply {
-            this.load(
+            load(
                 getResourceAsStream(dirPath.plus(name))?.let {
                     BufferedInputStream(it)
                 }
             )
         }
     }
-
-    fun getLocaleProperties(name: String) = getProperties(name, LOCALES_DIR)
-
-    fun getThemeProperties(name: String) = getProperties(name, THEMES_DIR)
 
 }

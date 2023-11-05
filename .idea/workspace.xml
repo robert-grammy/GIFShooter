@@ -10,34 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f4fdbac-6755-433b-a0bc-5d32c302f4bc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/GIFShooter_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/error_dialog/ErrorDialog.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/error_dialog/ErrorDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/utils/FileManager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/free_area/AreaBottomBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/free_area/AreaBottomBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/free_area/AreaTitleBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/free_area/AreaTitleBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/free_area/FreeAreaWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/free_area/FreeAreaWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/language_dialog/LanguageSelectorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/language_dialog/LanguageSelectorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/main_window/ProgramMainPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/main_window/ProgramMainPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/main_window/ProgramTitleBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/main_window/ProgramTitleBar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/theme_dialog/ThemeSelectorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/robert_grammy/gifshooter/ui/theme_dialog/ThemeSelectorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/ComponentDimension.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/ComponentDimension.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/Config.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/Config.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/ProgramIcon.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/ProgramIcon.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/Strings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/Strings.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/config/Theme.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/control/ProgramController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/control/ProgramController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/button/ColoredButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/button/ColoredButton.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/frame/ProgramFileChooser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/frame/ProgramFileChooser.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/input/OutputPathField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/input/OutputPathField.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/selector/AreaTypeSelector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/selector/AreaTypeSelector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/selector/DelaySelector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/selector/DelaySelector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/selector/FPSSelector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/selector/FPSSelector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/selector/ScreenSelector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/component/selector/ScreenSelector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/graphics/ScrollUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/ui/graphics/ScrollUI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/utils/FileManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/utils/FileManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/utils/ResourceLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ru/robert_grammy/gifshooter/utils/ResourceLoader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/icons/recording_status_active_icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/images/icons/recording_status_inactive_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/images/icons/recording_status_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/configs/component_sizes.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/configs/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configs/config.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

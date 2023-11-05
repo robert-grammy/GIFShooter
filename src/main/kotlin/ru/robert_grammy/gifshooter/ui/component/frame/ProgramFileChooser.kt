@@ -11,18 +11,12 @@ object ProgramFileChooser : JFileChooser(), ThemeComponent, LocaleComponent {
 
     private fun readResolve(): Any = ProgramFileChooser
 
-    private val openButton: JButton
-    private val closeButton: JButton
+    private lateinit var openButton: JButton
+    private lateinit var closeButton: JButton
 
     init {
         fileSelectionMode = DIRECTORIES_ONLY
-        val buttons = ((components[3] as JPanel).components[3] as JPanel).components
-
-        openButton = buttons[0] as JButton
-        ComponentDimension.FILE_CHOOSER_BUTTON.setExactly(openButton)
-
-        closeButton = buttons[1] as JButton
-        ComponentDimension.FILE_CHOOSER_BUTTON.setExactly(closeButton)
+        updateButtons()
     }
 
     fun open(): Int {
@@ -32,13 +26,21 @@ object ProgramFileChooser : JFileChooser(), ThemeComponent, LocaleComponent {
 
     override fun updateTheme() {
         SwingUtilities.updateComponentTreeUI(this)
-        //TODO Buttons background fix
+        updateButtons()
+    }
 
+    private fun updateButtons() {
+        val buttons = ((components[3] as JPanel).components[3] as JPanel).components
+
+        openButton = buttons[0] as JButton
+        ComponentDimension.FILE_CHOOSER_BUTTON.setExactly(openButton)
+        openButton.border = BorderFactory.createLineBorder(Theme.BORDER_COLOR.get(), 2)
         openButton.background = Theme.PRIMARY_COLOR.get()
-        openButton.border = BorderFactory.createLineBorder(Theme.BORDER_COLOR.get())
 
+        closeButton = buttons[1] as JButton
+        ComponentDimension.FILE_CHOOSER_BUTTON.setExactly(closeButton)
+        closeButton.border = BorderFactory.createLineBorder(Theme.BORDER_COLOR.get(), 2)
         closeButton.background = Theme.PRIMARY_COLOR.get()
-        closeButton.border = BorderFactory.createLineBorder(Theme.BORDER_COLOR.get())
     }
 
     override fun updateTexts() {

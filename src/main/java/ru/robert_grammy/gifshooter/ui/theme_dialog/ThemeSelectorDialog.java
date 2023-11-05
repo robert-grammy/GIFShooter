@@ -1,5 +1,6 @@
 package ru.robert_grammy.gifshooter.ui.theme_dialog;
 
+import ru.robert_grammy.gifshooter.config.Config;
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
@@ -13,7 +14,6 @@ import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
 
 public class ThemeSelectorDialog extends JDialog implements ThemeComponent, LocaleComponent {
 
@@ -46,13 +46,13 @@ public class ThemeSelectorDialog extends JDialog implements ThemeComponent, Loca
     private void loadListeners() {
         okButton.addActionListener(e -> {
             if (themes.getSelectedIndex() == -1) return;
-            ProgramController.INSTANCE.setTheme(themes.getSelectedValue());
+            String themeName = themes.getSelectedValue();
+            ProgramController.INSTANCE.setTheme(themeName);
+            Config.THEME.set(themeName);
             dispose();
         });
 
-        cancelButton.addActionListener(e -> {
-            dispose();
-        });
+        cancelButton.addActionListener(e -> dispose());
 
         contentPane.registerKeyboardAction(e -> dispose(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }

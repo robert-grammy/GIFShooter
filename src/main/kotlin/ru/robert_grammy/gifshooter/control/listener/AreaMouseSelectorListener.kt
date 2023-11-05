@@ -14,14 +14,10 @@ import kotlin.math.min
 
 object AreaMouseSelectorListener : MouseAdapter(), KeyListener {
 
-    var firstX = -1
-        private set
-    var firstY = -1
-        private set
-    var secondX = -1
-        private set
-    var secondY = -1
-        private set
+    private var firstX = -1
+    private var firstY = -1
+    private var secondX = -1
+    private var secondY = -1
 
     var clicked = false
         private set

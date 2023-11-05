@@ -1,9 +1,6 @@
 package ru.robert_grammy.gifshooter.control
 
-import ru.robert_grammy.gifshooter.config.ProgramFont
-import ru.robert_grammy.gifshooter.config.Strings
-import ru.robert_grammy.gifshooter.config.Theme
-import ru.robert_grammy.gifshooter.config.UIProperties
+import ru.robert_grammy.gifshooter.config.*
 import ru.robert_grammy.gifshooter.record.GifRecorder
 import ru.robert_grammy.gifshooter.record.GifWriter
 import ru.robert_grammy.gifshooter.record.ScreenTaker
@@ -12,6 +9,7 @@ import ru.robert_grammy.gifshooter.ui.component.view.CreateGifProgressBar
 import ru.robert_grammy.gifshooter.ui.error_dialog.ErrorDialog.ErrorHandler
 import ru.robert_grammy.gifshooter.ui.free_area.FreeAreaWindow
 import ru.robert_grammy.gifshooter.ui.main_window.ProgramWindow
+import ru.robert_grammy.gifshooter.utils.FileManager
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
 import java.awt.Dimension
 import java.awt.Point
@@ -39,6 +37,8 @@ object ProgramController {
     fun loadProgram() {
         if (isLoaded) return
         Thread.setDefaultUncaughtExceptionHandler(ErrorHandler())
+
+        FileManager.loadFiles()
 
         UIProperties.loadProperties()
         UIProperties.loadFont()
@@ -96,12 +96,17 @@ object ProgramController {
 
     fun createFrameIcon() : BufferedImage {
         val resultIcon = BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB)
-        val icon = ResourceLoader.getImage(ICON_FILENAME)
-        val graphics = resultIcon.graphics
+        val image = ResourceLoader.getImage(ICON_FILENAME) as BufferedImage
+        val icon = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_ARGB)
 
+        var graphics = icon.graphics
+        graphics.drawImage(image, 0, 0, null)
+        graphics.dispose()
+        ProgramIcon.setColorFilter(icon, Theme.TEXT_COLOR.hex())
+
+        graphics = resultIcon.graphics
         graphics.color = Theme.SECONDARY_COLOR.get()
         graphics.fillRect(0, 0, ICON_DIMENSION.width, ICON_DIMENSION.height)
-
         graphics.drawImage(icon, 0, 0, null)
         graphics.dispose()
 
@@ -113,8 +118,7 @@ object ProgramController {
         var isLoaded = false
             private set
 
-        var isVisible = true
-            private set
+        private var isVisible = true
 
         fun load() {
             if (isLoaded) return

@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 public class ErrorDialog extends JDialog {
 

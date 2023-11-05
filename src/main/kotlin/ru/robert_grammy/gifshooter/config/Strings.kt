@@ -1,9 +1,9 @@
 package ru.robert_grammy.gifshooter.config
 
-import ru.robert_grammy.gifshooter.utils.ResourceLoader
+import ru.robert_grammy.gifshooter.utils.FileManager
 import java.io.File
-import java.util.Locale
-import java.util.ResourceBundle
+import java.net.URLClassLoader
+import java.util.*
 
 enum class Strings(private val key: String) {
 
@@ -42,7 +42,7 @@ enum class Strings(private val key: String) {
 
     companion object {
         private const val BUNDLE_NAME = "strings"
-        private const val BUNDLE_PATH = "configs.locales.$BUNDLE_NAME"
+        private val BUNDLE_PATH = "${FileManager.LOCAL_DIR}${FileManager.LOCALES_DIR}"
         private const val BUNDLE_EXTENSION = ".properties"
         private const val LOCALE_LANG_AND_STATE_SEPARATOR = "_"
         private val DEFAULT_LOCALE = Locale.of("en_US")
@@ -52,15 +52,22 @@ enum class Strings(private val key: String) {
         private lateinit var CONFIG : ResourceBundle
         private val LOCALES = LinkedHashMap<String, Locale>()
 
-        fun getLocales() = LinkedHashMap<String, Locale>(LOCALES)
+        fun getLocales() = LinkedHashMap(LOCALES)
 
-        private fun setLocale(locale: String) {
-            CONFIG = ResourceBundle.getBundle(BUNDLE_PATH, LOCALES.getOrDefault(locale, DEFAULT_LOCALE), ResourceLoader.CLASS_LOADER)
-            CONFIG = if (locale.contains(LOCALE_LANG_AND_STATE_SEPARATOR)) {
-                val localeParts = locale.split(LOCALE_LANG_AND_STATE_SEPARATOR)
-                ResourceBundle.getBundle(BUNDLE_PATH, Locale.of(localeParts[0], localeParts[1]), ResourceLoader.CLASS_LOADER)
+        private fun setLocale(localeFormat: String) {
+            val folder = File(BUNDLE_PATH)
+            val loader = URLClassLoader(arrayOf(folder.toURI().toURL()))
+
+            if (LOCALES.containsKey(localeFormat)) {
+                CONFIG = ResourceBundle.getBundle(BUNDLE_NAME, LOCALES.getOrDefault(localeFormat, DEFAULT_LOCALE), loader)
+                return
+            }
+
+            CONFIG = if (localeFormat.contains(LOCALE_LANG_AND_STATE_SEPARATOR)) {
+                val localeParts = localeFormat.split(LOCALE_LANG_AND_STATE_SEPARATOR)
+                ResourceBundle.getBundle(BUNDLE_NAME, Locale.of(localeParts[0], localeParts[1]), loader)
             } else {
-                ResourceBundle.getBundle(BUNDLE_PATH, Locale.of(locale), ResourceLoader.CLASS_LOADER)
+                ResourceBundle.getBundle(BUNDLE_NAME, Locale.of(localeFormat), loader)
             }
         }
 
@@ -69,9 +76,8 @@ enum class Strings(private val key: String) {
                 it.value = CONFIG.getString(it.key)
             }
         }
-        fun loadLocales() {
-            val localesFolder = ResourceLoader.getResource("configs/locales")!!
-            val folder = File(localesFolder.file)
+        private fun loadLocales() {
+            val folder = FileManager.getLocalesFolder()
             folder.listFiles()!!.map(File::getName).filter {
                     it.startsWith(BUNDLE_NAME) && it.endsWith(BUNDLE_EXTENSION)
                 }.map {

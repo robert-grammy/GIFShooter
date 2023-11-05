@@ -21,6 +21,39 @@ enum class ProgramIcon(filename: String) {
     companion object {
         private const val MAX_BYTE_VALUE: Double = 255.0
         private val COLORED_ICONS = HashMap<String, HashMap<Int, ImageIcon>>()
+
+        fun setColorFilter(image: BufferedImage, hexColor: Int) {
+            if (image.type != BufferedImage.TYPE_INT_ARGB) return
+            val pixels = (image.raster.dataBuffer as DataBufferInt).data
+            for (i in 0 ..< image.width * image.height) {
+                val currentPixel = pixels[i]
+                val alpha = getAlpha(currentPixel)
+                val red = (getRed(hexColor) * (getRed(currentPixel) / MAX_BYTE_VALUE)).toInt()
+                val green = (getGreen(hexColor) * (getGreen(currentPixel) / MAX_BYTE_VALUE)).toInt()
+                val blue = (getBlue(hexColor) * (getBlue(currentPixel) / MAX_BYTE_VALUE)).toInt()
+                pixels[i] = getHex(alpha, red, green, blue)
+            }
+        }
+
+        private fun getAlpha(hex: Int) : Int {
+            return hex.rotateRight(24).and(0xFF)
+        }
+
+        private fun getRed(hex: Int) : Double {
+            return hex.rotateRight(16).and(0xFF).toDouble()
+        }
+
+        private fun getGreen(hex: Int) : Double {
+            return hex.rotateRight(8).and(0xFF).toDouble()
+        }
+
+        private fun getBlue(hex: Int) : Double {
+            return hex.and(0xFF).toDouble()
+        }
+
+        private fun getHex(alpha: Int, red: Int, green: Int, blue: Int) : Int {
+            return blue + green.rotateLeft(8) + red.rotateLeft(16) + alpha.rotateLeft(24)
+        }
     }
 
     private val icon = ResourceLoader.getIcon(filename)
@@ -39,39 +72,10 @@ enum class ProgramIcon(filename: String) {
         icon.paintIcon(null, graphics, 0, 0)
         graphics.dispose()
 
-        val pixels = (image.raster.dataBuffer as DataBufferInt).data
-
-        for (i in 0 ..< image.width * image.height) {
-            val currentPixel = pixels[i]
-            val alpha = getAlpha(currentPixel)
-            val red = (getRed(hexColor) * (getRed(currentPixel) / MAX_BYTE_VALUE)).toInt()
-            val green = (getGreen(hexColor) * (getGreen(currentPixel) / MAX_BYTE_VALUE)).toInt()
-            val blue = (getBlue(hexColor) * (getBlue(currentPixel) / MAX_BYTE_VALUE)).toInt()
-            pixels[i] = getHex(alpha, red, green, blue)
-        }
+        setColorFilter(image, hexColor)
 
         COLORED_ICONS[name]!![hexColor] = ImageIcon(image)
         return COLORED_ICONS[name]!![hexColor]!!
-    }
-
-    private fun getAlpha(hex: Int) : Int {
-        return hex.rotateRight(24).and(0xFF)
-    }
-
-    private fun getRed(hex: Int) : Double {
-        return hex.rotateRight(16).and(0xFF).toDouble()
-    }
-
-    private fun getGreen(hex: Int) : Double {
-        return hex.rotateRight(8).and(0xFF).toDouble()
-}
-
-    private fun getBlue(hex: Int) : Double {
-        return hex.and(0xFF).toDouble()
-    }
-
-    private fun getHex(alpha: Int, red: Int, green: Int, blue: Int) : Int {
-        return blue + green.rotateLeft(8) + red.rotateLeft(16) + alpha.rotateLeft(24)
     }
 
 }

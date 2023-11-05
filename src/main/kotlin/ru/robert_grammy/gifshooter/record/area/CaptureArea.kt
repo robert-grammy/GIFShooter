@@ -1,22 +1,13 @@
 package ru.robert_grammy.gifshooter.record.area
 
 import ru.robert_grammy.gifshooter.utils.ResourceLoader
-import java.awt.Rectangle
 import java.awt.Robot
 import java.awt.image.BufferedImage
 import java.awt.image.IndexColorModel
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
-import javax.imageio.IIOImage
-import javax.imageio.ImageIO
-import javax.imageio.ImageWriteParam
-import javax.imageio.stream.MemoryCacheImageOutputStream
 
 interface CaptureArea {
 
     companion object {
-        const val FORMAT_NAME = "jpg"
         val ROBOT = Robot()
         val CURSOR = ResourceLoader.getImage("default_cursor_image.png")
         val COLOR_MODEL: IndexColorModel

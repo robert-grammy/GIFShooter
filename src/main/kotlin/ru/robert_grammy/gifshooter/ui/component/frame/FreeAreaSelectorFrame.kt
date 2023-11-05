@@ -9,7 +9,7 @@ object FreeAreaSelectorFrame : JFrame() {
 
     private fun readResolve(): Any = FreeAreaSelectorFrame
 
-    private val lineWeigh = BasicStroke(2F);
+    private val lineWeigh = BasicStroke(2F)
 
     private val areaMouseSelectorListener = AreaMouseSelectorListener
 

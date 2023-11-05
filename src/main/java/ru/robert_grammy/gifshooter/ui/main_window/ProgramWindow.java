@@ -1,6 +1,5 @@
 package ru.robert_grammy.gifshooter.ui.main_window;
 
-import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;

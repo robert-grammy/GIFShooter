@@ -37,11 +37,6 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
     private JLabel outputFolderLineLabel;
     private JLabel recordFPSLineLabel;
     private JLabel frameDelayLineLabel;
-    private JPanel captureAreaLinePane;
-    private JPanel outputFolderLinePane;
-    private JPanel recordFPSLinePane;
-    private JPanel frameDelayLinePane;
-    private JPanel captureAndSettingsButtonsLinePane;
     private JScrollPane resultsInfoScroll;
     private JComboBox<String> areaTypeSelector;
     private JPanel areaTypeOptionPane;
@@ -134,9 +129,7 @@ public class ProgramMainPane implements ThemeComponent, LocaleComponent {
             }
         });
         recordFPSSelector.addActionListener(event -> frameDelaySelector.setSelectedIndex(recordFPSSelector.getSelectedIndex()));
-        resetFPSButton.addActionListener(event -> {
-            resetSelectors();
-        });
+        resetFPSButton.addActionListener(event -> resetSelectors());
         resetFrameDelayButton.addActionListener(event -> frameDelaySelector.setSelectedIndex(recordFPSSelector.getSelectedIndex()));
         captureButton.addActionListener(CaptureButtonListener.INSTANCE);
         localeSelectButton.addActionListener(event -> new LanguageSelectorDialog());

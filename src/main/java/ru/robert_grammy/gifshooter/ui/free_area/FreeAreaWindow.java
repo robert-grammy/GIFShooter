@@ -1,6 +1,5 @@
 package ru.robert_grammy.gifshooter.ui.free_area;
 
-import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
@@ -9,7 +8,6 @@ import ru.robert_grammy.gifshooter.control.ThemeComponent;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 
 public class FreeAreaWindow extends JFrame implements ThemeComponent, LocaleComponent {
     private JPanel rootPane;

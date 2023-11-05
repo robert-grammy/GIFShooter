@@ -1,5 +1,6 @@
 package ru.robert_grammy.gifshooter.ui.language_dialog;
 
+import ru.robert_grammy.gifshooter.config.Config;
 import ru.robert_grammy.gifshooter.config.Strings;
 import ru.robert_grammy.gifshooter.config.Theme;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
@@ -13,7 +14,6 @@ import ru.robert_grammy.gifshooter.ui.component.view.LineLabel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
 
 public class LanguageSelectorDialog extends JDialog implements ThemeComponent, LocaleComponent {
 
@@ -47,7 +47,9 @@ public class LanguageSelectorDialog extends JDialog implements ThemeComponent, L
     private void loadListeners() {
         okButton.addActionListener(e -> {
             if (languages.getSelectedIndex() == -1) return;
-            ProgramController.INSTANCE.setLocale((String) Strings.Companion.getLocales().keySet().toArray()[languages.getSelectedIndex()]);
+            String localeFormat = (String) Strings.Companion.getLocales().keySet().toArray()[languages.getSelectedIndex()];
+            ProgramController.INSTANCE.setLocale(localeFormat);
+            Config.LOCALE.set(localeFormat);
             dispose();
         });
 

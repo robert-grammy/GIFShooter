@@ -2,7 +2,6 @@ package ru.robert_grammy.gifshooter.ui.main_window;
 
 import ru.robert_grammy.gifshooter.config.ProgramIcon;
 import ru.robert_grammy.gifshooter.config.Strings;
-import ru.robert_grammy.gifshooter.config.UIProperties;
 import ru.robert_grammy.gifshooter.control.LocaleComponent;
 import ru.robert_grammy.gifshooter.control.ThemeComponent;
 import ru.robert_grammy.gifshooter.control.listener.FrameMouseDragListener;
@@ -36,9 +35,7 @@ public class ProgramTitleBar implements ThemeComponent, LocaleComponent {
     private void initializeCloseButton() {
         closeButton = new ColoredButton();
         closeButton.setIcon(ProgramIcon.CLOSE.getColored(Theme.TEXT_COLOR.hex()));
-        closeButton.addActionListener(event -> {
-            System.exit(0);
-        });
+        closeButton.addActionListener(event -> System.exit(0));
     }
 
     private void initializeMinimizeButton() {
